@@ -85,6 +85,13 @@ PROJECTS = [
                         "Vídeo de la demo de Citras en el portátil: el centro de coordinación recibe un aviso urgente, activa la ambulancia que antes llega, replanifica las rutas y repasa la flota",
                         "Vídeo de la demo de Citras en el móvil: la tripulación guarda la revisión de la ambulancia y el paciente ve llegar la suya")),
     dict(
+        slug="grgestor", name="GR Gestor", color="var(--c-grgestor)",
+        kicker="App de facturación con VERI*FACTU para autónomos y gestorías",
+        one="Facturas lacradas con VERI*FACTU que se escriben en una frase desde el móvil, lo que es de Hacienda apartado en su sobre y la gestoría viéndolo todo al momento.",
+        url="https://grgestor.es", link="Entrar en grgestor.es",
+        schema='{"@type":"SoftwareApplication","name":"GR Gestor","applicationCategory":"FinanceApplication","operatingSystem":"Android, Web","url":"https://grgestor.es","description":"App de facturación con VERI*FACTU para autónomos y micropymes: facturas escritas en una frase, el IVA y el IRPF apartados en sobres y conexión con su gestoría, que trabaja con GR Gestor Despacho.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis hasta 3 facturas al mes"},{"@type":"Offer","price":"2.99","priceCurrency":"EUR","description":"Facturas ilimitadas, al mes, IVA incluido"}]}',
+        shot=site_shot("grgestor", "GR Gestor")),
+    dict(
         slug="marnin", name="Marnin", color="var(--c-marnin)",
         kicker="Web y portal de empleados de una asociación de socorrismo",
         one="La web de la Asociación de Socorrismo Marnin y la app con la que sus socorristas fichan, firman documentos y organizan cada turno desde su puesto de trabajo.",
@@ -362,7 +369,8 @@ def llms():
     for p in PROJECTS:
         site = p["url"] if p["url"].startswith("http") else "https://gebrey.es/#web"
         app = f" App: {p['url2']}" if p.get("url2") else ""
-        lines.append(f"- {p['name']} ({p['kicker'].lower()}): {p['one']} Sitio: {site}{app}")
+        kicker = p["kicker"][0].lower() + p["kicker"][1:]   # solo la inicial: VERI*FACTU y SaaS se quedan como son
+        lines.append(f"- {p['name']} ({kicker}): {p['one']} Sitio: {site}{app}")
     lines += ["", "## Páginas", "", "- [Inicio](https://gebrey.es/)", "- [Aviso legal y privacidad](https://gebrey.es/legal.html)"]
     return "\n".join(lines) + "\n"
 

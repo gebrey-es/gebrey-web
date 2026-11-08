@@ -15,6 +15,7 @@ const SITES = {
   viaconextahub: { url: 'https://viaconextahub.es/' },
   citras: { url: 'https://mbtenerife.es/citras/' },
   marnin: { url: 'https://marnin.es/' },
+  grgestor: { url: 'https://grgestor.es/' },
 };
 const FPS = 30;
 const OUT = path.join(__dirname, 'src', 'assets', 'video');

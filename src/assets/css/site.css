@@ -18,6 +18,7 @@
   --c-vch: #ff5a47;             /* ViaConextaHub: coral tajinaste */
   --c-appequipo: #c6e85a;       /* AppEquipo: lima */
   --c-citras: #3fc1b0;          /* Citras: verde atlántico */
+  --c-grgestor: #e8ac4a;        /* GR Gestor: ámbar malvasía */
   --c-marnin: #4fa8ff;          /* Marnin: azul atlántico */
   --c-web: #b9a7ff;             /* Web y hosting: lila */
   --c: var(--accent);
@@ -54,6 +55,7 @@
     --c-vch: #d6301f;
     --c-appequipo: #4d7f0a;
     --c-citras: #137e71;
+    --c-grgestor: #935c00;
     --c-marnin: #1b6fd0;
     --c-web: #6a52d8;
     --on-c: #fff8ee;
@@ -72,6 +74,7 @@
   --c-vch: #d6301f;
   --c-appequipo: #4d7f0a;
   --c-citras: #137e71;
+  --c-grgestor: #935c00;
   --c-marnin: #1b6fd0;
   --c-web: #6a52d8;
   --on-c: #fff8ee;

@@ -1,6 +1,6 @@
 # gebrey.es
 
-Web de GEBREY: un escaparate de proyectos en una sola página (ViaConextaHub, AppEquipo, Citras, Marnin y Web y hosting) más el aviso legal, la página de gracias y `presupuesto.php` (el formulario de presupuesto, una frase con huecos, que manda el correo a hola@gebrey.es desde el propio hosting). El nombre del titular solo aparece en el aviso legal.
+Web de GEBREY: un escaparate de proyectos en una sola página (ViaConextaHub, AppEquipo, Citras, GR Gestor, Marnin y Web y hosting) más el aviso legal, la página de gracias y `presupuesto.php` (el formulario de presupuesto, una frase con huecos, que manda el correo a hola@gebrey.es desde el propio hosting). El nombre del titular solo aparece en el aviso legal.
 
 ## Estructura
 
