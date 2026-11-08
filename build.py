@@ -273,7 +273,7 @@ def index_page(preview=False):
               + ",".join(p["schema"] for p in PROJECTS)
               + ']}')
     extra = f'<script type="application/ld+json">{schema}</script>'
-    out = head("GEBREY — software para equipos y gestorías, y webs a medida",
+    out = head("GEBREY — proyectos de software y web",
                "AppEquipo, el portal del empleado; GR Gestor, la facturación con VERI*FACTU; Citras y ViaConextaHub. Y webs a medida, como la de Marnin.",
                SITE + "/", "assets/css/site.css", extra, preview)
     out += header(home)
@@ -282,7 +282,7 @@ def index_page(preview=False):
 <section class="scene hero" id="inicio" aria-label="GEBREY">
   <div class="wrap hero-in">
     <div class="mark-slot" data-fit="GEBREY" data-fit-wdth="88"><span class="mark-ph" aria-hidden="true">GEBREY</span><a class="mark" href="#inicio" aria-label="GEBREY, inicio"><span class="lw" style="--i:0"><span class="l">G</span></span><span class="lw" style="--i:1"><span class="l">E</span></span><span class="lw" style="--i:2"><span class="l">B</span></span><span class="lw r" style="--i:3"><span class="l">R</span></span><span class="lw" style="--i:4"><span class="l">E</span></span><span class="lw" style="--i:5"><span class="l">Y</span></span></a></div>
-    <h1 class="tag">Software para equipos, gestorías y agencias. Y webs a medida.</h1>
+    <h1 class="tag">Proyectos de software y web.</h1>
     <p class="hero-lead">Hacemos y mantenemos nuestros productos, conectados entre sí, y las webs y los portales de nuestros clientes. Desde Tenerife.</p>
     <nav class="index" aria-label="Productos, clientes y servicios">{index}</nav>
   </div>
