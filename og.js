@@ -9,7 +9,7 @@ const path = require('path');
 (async () => {
   const root = __dirname;
   const projects = JSON.parse(execFileSync('python3', ['-c',
-    'import build, json; print(json.dumps([[p["name"], p["color"]] for p in build.PROJECTS]))'], { cwd: root }));
+    'import build, json; print(json.dumps([[p["name"], p["color"]] for p in build.PROJECTS if p["slug"] != "jornada"]))'], { cwd: root }));
   const css = fs.readFileSync(path.join(root, 'src/assets/css/site.css'), 'utf8');
   const colors = {};
   for (const m of css.matchAll(/(--c-[a-z]+):\s*(#[0-9a-f]{6})/gi)) if (!colors[m[1]]) colors[m[1]] = m[2];  // la primera es la del tema oscuro
@@ -26,14 +26,14 @@ const path = require('path');
   .glow { position: absolute; inset: 0; background: radial-gradient(38% 55% at 68% 40%, rgba(255, 90, 71, .16), transparent 70%); }
   .mark { position: absolute; left: 74px; top: 122px; font-family: "Bricolage Grotesque"; font-weight: 800; font-size: 232px; line-height: .84; letter-spacing: -.045em; font-variation-settings: "wdth" 88, "opsz" 96; }
   .mark b { color: #ff5a47; font-weight: inherit; }
-  .tag { position: absolute; left: 74px; top: 388px; font-family: "Bricolage Grotesque"; font-weight: 600; font-size: 38px; line-height: 1.18; letter-spacing: -.02em; font-variation-settings: "opsz" 96; }
+  .tag { position: absolute; left: 74px; top: 380px; max-width: 980px; font-family: "Bricolage Grotesque"; font-weight: 600; font-size: 38px; line-height: 1.18; letter-spacing: -.02em; font-variation-settings: "opsz" 96; }
   .row { position: absolute; left: 74px; right: 60px; top: 518px; display: flex; flex-wrap: wrap; gap: 10px 28px; font-size: 24px; color: #c1b09b; }
   .row span { display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; }
   .row i { width: 13px; height: 13px; border-radius: 50%; display: inline-block; }
 </style></head><body>
 <div class="glow"></div>
 <div class="mark">GEB<b>R</b>EY</div>
-<div class="tag">Proyectos de software y web.</div>
+<div class="tag">Software para equipos, gestorías y agencias. Y webs a medida.</div>
 <div class="row">${items}</div>
 </body></html>`;
   const browser = await chromium.launch();

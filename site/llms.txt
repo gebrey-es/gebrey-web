@@ -1,17 +1,24 @@
 # GEBREY
 
-> Escaparate de proyectos de software y web a medida.
+> Software y webs a medida desde Tenerife: productos propios conectados entre sí (AppEquipo, GR Gestor, Citras y ViaConextaHub) y webs y portales para clientes.
 
 Contacto: hola@gebrey.es · +34 822 276 190 · Avda. Tres de Mayo 30, Edificio Ahlers, 1.ª planta, 38005 Santa Cruz de Tenerife
 
-## Proyectos
+## Productos
 
-- ViaConextaHub (plataforma SaaS para agencias de viajes): Un solo buscador para que cada agencia reserve con todos sus mayoristas, usando sus propias claves. Sitio: https://viaconextahub.es
-- AppEquipo (control horario y portal del empleado a medida): Fichajes que nadie puede retocar, cuadrantes de turnos, nóminas firmadas desde el móvil y partes diarios, con el nombre y el logo de tu empresa. Sitio: https://mbtenerife.es
+- AppEquipo (portal del empleado y control horario): Fichajes que nadie puede retocar, cuadrantes de turnos, nóminas firmadas desde el móvil y partes diarios, con el nombre y el logo de cada empresa. Para equipos de limpieza, hoteles, obras, seguridad o socorrismo. Sitio: https://mbtenerife.es
+- Jornada (AppEquipo + GR Gestor: del fichaje a la nómina): El equipo ficha en AppEquipo y la gestoría recibe las horas de cada mes en GR Gestor, listas para las nóminas. 1,50 € por empleado y mes, o incluido por la gestoría con GR Gestor Despacho + Jornada. Sitio: https://grgestor.es/#jornada Más: https://mbtenerife.es/registro-de-jornada/#con-tu-gestoria
+- GR Gestor (facturación con VERI*FACTU para autónomos y gestorías): Facturas lacradas con VERI*FACTU que se escriben en una frase desde el móvil, lo que es de Hacienda apartado en su sobre y la gestoría viéndolo todo al momento, también las horas del equipo. Sitio: https://grgestor.es
 - Citras (coordinación de flotas de vehículos): Cada vehículo, cada servicio y cada aviso en una sola pantalla: rutas que se rehacen solas, avisos urgentes y un enlace para seguir cada vehículo en el mapa. Sitio: https://mbtenerife.es/citras/
-- GR Gestor (app de facturación con VERI*FACTU para autónomos y gestorías): Facturas lacradas con VERI*FACTU que se escriben en una frase desde el móvil, lo que es de Hacienda apartado en su sobre y la gestoría viéndolo todo al momento. Sitio: https://grgestor.es
-- Marnin (web y portal de empleados de una asociación de socorrismo): La web de la Asociación de Socorrismo Marnin y la app con la que sus socorristas fichan, firman documentos y organizan cada turno desde su puesto de trabajo. Sitio: https://marnin.es App: https://marnin.appequipo.es
-- Web y hosting (webs y portales a medida, alojados y mantenidos): Tu web o tu herramienta interna, en un servidor gestionado en España, con correo, copias y certificados. Sitio: https://gebrey.es/#web
+- ViaConextaHub (plataforma para agencias de viajes): Un solo buscador para que cada agencia reserve con todos sus mayoristas, usando sus propias claves. Sitio: https://viaconextahub.es
+
+## Clientes
+
+- Marnin (su web, y su portal del empleado con AppEquipo): La Asociación de Socorrismo Marnin tiene su propia web, que le hicimos nosotros, y su equipo trabaja con AppEquipo: sus socorristas fichan, firman documentos y organizan cada turno desde el móvil. Sitio: https://marnin.es Más: https://marnin.appequipo.es
+
+## Servicios
+
+- Web y hosting (webs y portales a medida, alojados y mantenidos): Tu web o tu herramienta interna, en un servidor gestionado en España, con correo, copias y certificados. Como la de Marnin. Sitio: https://gebrey.es/#web
 
 ## Páginas
 

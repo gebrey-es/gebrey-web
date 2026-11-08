@@ -56,26 +56,65 @@ def site_shot(slug, name):
     return video_shot(f"assets/video/{slug}-portatil", f"assets/video/{slug}-movil",
                       f"Recorrido por la web de {name} en un portátil", f"Recorrido por la web de {name} en un móvil")
 
+# Qué es cada escena: un producto nuestro, el trabajo para un cliente o un servicio. Marnin es un cliente con su
+# propietario (la Asociación de Socorrismo Marnin): le hicimos la web y su portal del empleado funciona con AppEquipo.
+KINDS = {"producto": "Producto", "cliente": "Cliente", "servicio": "Servicio"}
+
+SHOT_JORNADA = """<div class="shot flujo" aria-hidden="true">
+  <div class="pasos">
+    <div class="paso pc" style="--i:0"><span class="chip on">AppEquipo</span><span><b>08:02</b> Entrada, sellada en la cadena</span></div>
+    <span class="linea pc" style="--i:1"></span>
+    <div class="paso pc" style="--i:2"><span class="chip">Cierre del mes</span><span><b>1.284</b> fichajes, ninguno retocado</span></div>
+    <span class="linea pc" style="--i:3"></span>
+    <div class="paso pc" style="--i:4"><span class="chip">GR Gestor Despacho</span><span>Octubre, listo para las nóminas</span></div>
+  </div>
+  <div class="nomina pc" style="--i:5">
+    <span class="nomina-t">Variables del mes</span>
+    <div class="row"><span>Ordinarias</span><span class="price">162,50 h</span></div>
+    <div class="row"><span>Extra</span><span class="price">2,25 h</span></div>
+    <div class="row"><span>Nocturnas</span><span class="price">147,33 h</span></div>
+    <div class="row"><span>Vacaciones</span><span class="price">3 días</span></div>
+    <span class="bar w4 hot pc" style="--i:7"></span>
+  </div>
+</div>"""
+
+SHOT_WEB = """<div class="shot web" aria-hidden="true">
+  <div class="dots"><i class="pc" style="--i:0"></i><i class="pc" style="--i:1"></i><i class="pc" style="--i:2"></i></div>
+  <div class="win pc" style="--i:1">
+    <div class="col"><span class="bar w4 hot pc" style="--i:2"></span><span class="bar w3 pc" style="--i:3"></span><span class="bar w2 pc" style="--i:4"></span><span class="bar w3 pc" style="--i:5"></span></div>
+    <div class="col"><span class="bar w4 pc" style="--i:3"></span><span class="bar w4 pc" style="--i:4"></span><span class="bar w3 pc" style="--i:5"></span><span class="bar w2 pc" style="--i:6"></span></div>
+  </div>
+  <div class="status pc" style="--i:7"><span><b>SSL</b> activo</span><span><b>Copias</b> cada noche</span><span><b>Correo</b> en tu dominio</span></div>
+</div>"""
+
 PROJECTS = [
     dict(
-        slug="viaconextahub", name="ViaConextaHub", color="var(--c-vch)",
-        kicker="Plataforma SaaS para agencias de viajes",
-        one="Un solo buscador para que cada agencia reserve con todos sus mayoristas, usando sus propias claves.",
-        url="https://viaconextahub.es", link="Entrar en viaconextahub.es",
-        schema='{"@type":"SoftwareApplication","name":"ViaConextaHub","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://viaconextahub.es","description":"Plataforma SaaS que conecta a las agencias de viajes con sus mayoristas usando las claves de cada agencia.","author":{"@id":"' + ORG + '"},"offers":{"@type":"Offer","price":"25","priceCurrency":"EUR","description":"Suscripción mensual, más impuestos"}}',
-        shot=site_shot("viaconextahub", "ViaConextaHub")),
-    dict(
-        slug="appequipo", name="AppEquipo", color="var(--c-appequipo)",
-        kicker="Control horario y portal del empleado a medida",
-        one="Fichajes que nadie puede retocar, cuadrantes de turnos, nóminas firmadas desde el móvil y partes diarios, con el nombre y el logo de tu empresa.",
+        slug="appequipo", name="AppEquipo", color="var(--c-appequipo)", kind="producto",
+        kicker="Portal del empleado y control horario",
+        one="Fichajes que nadie puede retocar, cuadrantes de turnos, nóminas firmadas desde el móvil y partes diarios, con el nombre y el logo de cada empresa. Para equipos de limpieza, hoteles, obras, seguridad o socorrismo.",
         url="https://mbtenerife.es", link="Entrar en mbtenerife.es",
-        schema='{"@type":"SoftwareApplication","name":"AppEquipo","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://mbtenerife.es","description":"Control horario y portal del empleado para equipos de campo: registro de jornada inalterable, cuadrantes, nóminas firmadas y partes.","author":{"@type":"Organization","name":"MBTenerife","url":"https://mbtenerife.es","parentOrganization":{"@id":"' + ORG + '"}},"offers":{"@type":"Offer","price":"3.50","priceCurrency":"EUR","description":"Desde 3,50 € por persona, según el volumen de la empresa"}}',
+        schema='{"@type":"SoftwareApplication","name":"AppEquipo","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://mbtenerife.es","description":"Portal del empleado y control horario para equipos de campo: registro de jornada inalterable, cuadrantes, nóminas firmadas y partes.","author":{"@type":"Organization","name":"MBTenerife","url":"https://mbtenerife.es","parentOrganization":{"@id":"' + ORG + '"}},"offers":{"@type":"Offer","price":"3.50","priceCurrency":"EUR","description":"Desde 3,50 € por persona, según el volumen de la empresa"}}',
         # los vídeos reales del portal, servidos desde mbtenerife.es
         shot=video_shot(f"{VIDEO_APPEQUIPO}/portatil", f"{VIDEO_APPEQUIPO}/movil",
                         "Vídeo del portal en el portátil: coordinación aprueba unas vacaciones, revisa un fichaje, cubre un turno libre y abre el cuadrante del mes",
                         "Vídeo del portal en el móvil: una socorrista ficha la entrada, mira sus turnos, firma la nómina, hace la revisión de apertura y da un parte", local=False)),
     dict(
-        slug="citras", name="Citras", color="var(--c-citras)",
+        slug="jornada", name="Jornada", color="var(--c-jornada)", kind="producto",
+        kicker="AppEquipo + GR Gestor: del fichaje a la nómina",
+        one="El equipo ficha en AppEquipo y la gestoría recibe las horas de cada mes en GR Gestor, listas para las nóminas. 1,50 € por empleado y mes, o incluido por la gestoría con GR Gestor Despacho + Jornada.",
+        url="https://grgestor.es/#jornada", link="Ver el precio en grgestor.es",
+        url2="https://mbtenerife.es/registro-de-jornada/#con-tu-gestoria", link2="Cómo es el registro",
+        schema='{"@type":"SoftwareApplication","name":"Registro de jornada de AppEquipo con GR Gestor","applicationCategory":"BusinessApplication","operatingSystem":"Web, Android","url":"https://grgestor.es/#jornada","description":"El registro de jornada de AppEquipo conectado con GR Gestor Despacho: el equipo ficha desde el móvil y la gestoría recibe las horas de cada mes para las nóminas.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"1.50","priceCurrency":"EUR","description":"Por empleado y mes, impuestos aparte"},{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Incluido por la gestoría con GR Gestor Despacho + Jornada"}]}',
+        shot=SHOT_JORNADA),
+    dict(
+        slug="grgestor", name="GR Gestor", color="var(--c-grgestor)", kind="producto",
+        kicker="Facturación con VERI*FACTU para autónomos y gestorías",
+        one="Facturas lacradas con VERI*FACTU que se escriben en una frase desde el móvil, lo que es de Hacienda apartado en su sobre y la gestoría viéndolo todo al momento, también las horas del equipo.",
+        url="https://grgestor.es", link="Entrar en grgestor.es",
+        schema='{"@type":"SoftwareApplication","name":"GR Gestor","applicationCategory":"FinanceApplication","operatingSystem":"Android, Web","url":"https://grgestor.es","description":"App de facturación con VERI*FACTU para autónomos y micropymes: facturas escritas en una frase, el IVA y el IRPF apartados en sobres y conexión con su gestoría, que trabaja con GR Gestor Despacho.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis hasta 3 facturas al mes"},{"@type":"Offer","price":"2.99","priceCurrency":"EUR","description":"Facturas ilimitadas, al mes, IVA incluido"}]}',
+        shot=site_shot("grgestor", "GR Gestor")),
+    dict(
+        slug="citras", name="Citras", color="var(--c-citras)", kind="producto",
         kicker="Coordinación de flotas de vehículos",
         one="Cada vehículo, cada servicio y cada aviso en una sola pantalla: rutas que se rehacen solas, avisos urgentes y un enlace para seguir cada vehículo en el mapa.",
         url="https://mbtenerife.es/citras/", link="Conocer Citras",
@@ -85,35 +124,31 @@ PROJECTS = [
                         "Vídeo de la demo de Citras en el portátil: el centro de coordinación recibe un aviso urgente, activa la ambulancia que antes llega, replanifica las rutas y repasa la flota",
                         "Vídeo de la demo de Citras en el móvil: la tripulación guarda la revisión de la ambulancia y el paciente ve llegar la suya")),
     dict(
-        slug="grgestor", name="GR Gestor", color="var(--c-grgestor)",
-        kicker="App de facturación con VERI*FACTU para autónomos y gestorías",
-        one="Facturas lacradas con VERI*FACTU que se escriben en una frase desde el móvil, lo que es de Hacienda apartado en su sobre y la gestoría viéndolo todo al momento.",
-        url="https://grgestor.es", link="Entrar en grgestor.es",
-        schema='{"@type":"SoftwareApplication","name":"GR Gestor","applicationCategory":"FinanceApplication","operatingSystem":"Android, Web","url":"https://grgestor.es","description":"App de facturación con VERI*FACTU para autónomos y micropymes: facturas escritas en una frase, el IVA y el IRPF apartados en sobres y conexión con su gestoría, que trabaja con GR Gestor Despacho.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis hasta 3 facturas al mes"},{"@type":"Offer","price":"2.99","priceCurrency":"EUR","description":"Facturas ilimitadas, al mes, IVA incluido"}]}',
-        shot=site_shot("grgestor", "GR Gestor")),
+        slug="viaconextahub", name="ViaConextaHub", color="var(--c-vch)", kind="producto",
+        kicker="Plataforma para agencias de viajes",
+        one="Un solo buscador para que cada agencia reserve con todos sus mayoristas, usando sus propias claves.",
+        url="https://viaconextahub.es", link="Entrar en viaconextahub.es",
+        schema='{"@type":"SoftwareApplication","name":"ViaConextaHub","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://viaconextahub.es","description":"Plataforma SaaS que conecta a las agencias de viajes con sus mayoristas usando las claves de cada agencia.","author":{"@id":"' + ORG + '"},"offers":{"@type":"Offer","price":"25","priceCurrency":"EUR","description":"Suscripción mensual, más impuestos"}}',
+        shot=site_shot("viaconextahub", "ViaConextaHub")),
     dict(
-        slug="marnin", name="Marnin", color="var(--c-marnin)",
-        kicker="Web y portal de empleados de una asociación de socorrismo",
-        one="La web de la Asociación de Socorrismo Marnin y la app con la que sus socorristas fichan, firman documentos y organizan cada turno desde su puesto de trabajo.",
-        url="https://marnin.es", link="Entrar en marnin.es",
-        url2="https://marnin.appequipo.es", link2="Ver el Portal Marnin",
-        schema='{"@type":"SoftwareApplication","name":"Portal Marnin","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://marnin.appequipo.es","description":"Portal del empleado de la Asociación de Socorrismo Marnin (Adeje, Tenerife): fichaje, documentos y operativa diaria de los socorristas. Web pública en https://marnin.es.","author":{"@id":"' + ORG + '"}}',
+        slug="marnin", name="Marnin", color="var(--c-marnin)", kind="cliente",
+        kicker="Su web, y su portal del empleado con AppEquipo",
+        one="La Asociación de Socorrismo Marnin tiene su propia web, que le hicimos nosotros, y su equipo trabaja con AppEquipo: sus socorristas fichan, firman documentos y organizan cada turno desde el móvil.",
+        url="https://marnin.es", link="Ver marnin.es",
+        url2="https://marnin.appequipo.es", link2="Su portal, con AppEquipo",
+        schema='{"@type":"WebSite","name":"Marnin","url":"https://marnin.es","description":"Web de la Asociación de Socorrismo Marnin (Adeje, Tenerife), hecha por GEBREY. Su portal del empleado funciona con AppEquipo en https://marnin.appequipo.es.","publisher":{"@type":"Organization","name":"Asociación de Socorrismo Marnin","url":"https://marnin.es"},"creator":{"@id":"' + ORG + '"}}',
         shot=site_shot("marnin", "Marnin")),
     dict(
-        slug="web", name="Web y hosting", color="var(--c-web)",
+        slug="web", name="Web y hosting", color="var(--c-web)", kind="servicio",
         kicker="Webs y portales a medida, alojados y mantenidos",
-        one="Tu web o tu herramienta interna, en un servidor gestionado en España, con correo, copias y certificados.",
+        one="Tu web o tu herramienta interna, en un servidor gestionado en España, con correo, copias y certificados. Como la de Marnin.",
         url="mailto:hola@gebrey.es?subject=Presupuesto", link="Pedir presupuesto", quote=True,
         schema='{"@type":"Service","serviceType":"Diseño web, desarrollo y hosting","provider":{"@id":"' + ORG + '"},"areaServed":"ES","description":"Webs, portales internos y alojamiento gestionado para asociaciones y pymes."}',
-        shot='''<div class="shot web" aria-hidden="true">
-  <div class="dots"><i class="pc" style="--i:0"></i><i class="pc" style="--i:1"></i><i class="pc" style="--i:2"></i></div>
-  <div class="win pc" style="--i:1">
-    <div class="col"><span class="bar w4 hot pc" style="--i:2"></span><span class="bar w3 pc" style="--i:3"></span><span class="bar w2 pc" style="--i:4"></span><span class="bar w3 pc" style="--i:5"></span></div>
-    <div class="col"><span class="bar w4 pc" style="--i:3"></span><span class="bar w4 pc" style="--i:4"></span><span class="bar w3 pc" style="--i:5"></span><span class="bar w2 pc" style="--i:6"></span></div>
-  </div>
-  <div class="status pc" style="--i:7"><span><b>SSL</b> activo</span><span><b>Copias</b> cada noche</span><span><b>Correo</b> en tu dominio</span></div>
-</div>'''),
+        shot=SHOT_WEB),
 ]
+
+# Los productos propios (sin la escena de la conexión), para las descripciones.
+PRODUCTOS = [p for p in PROJECTS if p["kind"] == "producto" and p["slug"] != "jornada"]
 
 def letters(text, cls="l"):
     """Cada carácter en un span (para animarlos uno a uno). Los espacios se marcan."""
@@ -199,14 +234,26 @@ def quote_dialog():
 # ---------- índice ----------
 def index_page(preview=False):
     rel, home = "", "#inicio"
-    index = "".join(f'<a href="#{p["slug"]}" style="--dot:{p["color"]};--i:{i}">{p["name"]}</a>' for i, p in enumerate(PROJECTS))
+    # el índice, por tipos: cada etiqueta (Productos, Clientes, Servicios) va junto a sus enlaces
+    grupos = []
+    for p in PROJECTS:
+        if not grupos or grupos[-1][0] != p["kind"]:
+            grupos.append((p["kind"], []))
+        grupos[-1][1].append(p)
+    index, n = "", 0
+    for kind, ps in grupos:
+        links = ""
+        for p in ps:
+            links += f'<a href="#{p["slug"]}" style="--dot:{p["color"]};--i:{n}">{p["name"]}</a>'
+            n += 1
+        index += f'<span class="index-grupo"><span class="index-g" style="--i:{n - len(ps)}">{KINDS[kind]}s</span>{links}</span>'
     rail = "".join(f'<a href="#{p["slug"]}" style="--dot:{p["color"]}" data-name="{p["name"]}" aria-label="{p["name"]}"></a>' for p in PROJECTS)
     scenes = ""
     for p in PROJECTS:
         scenes += f'''
 <section class="scene" id="{p["slug"]}" style="--c:{p["color"]}" aria-labelledby="t-{p["slug"]}">
   <div class="wrap s-in">
-    <p class="s-kicker">{p["kicker"]}</p>
+    <p class="s-kicker"><span class="s-kind">{KINDS[p["kind"]]}</span>{p["kicker"]}</p>
     <h2 class="s-name" id="t-{p["slug"]}" data-fit="{p["name"]}"><span class="vh">{p["name"]}</span><span aria-hidden="true">{letters(p["name"])}</span></h2>
     <div class="s-row">
       <div class="s-text">
@@ -217,17 +264,17 @@ def index_page(preview=False):
     </div>
   </div>
 </section>'''
-    names = ", ".join(p["name"] for p in PROJECTS[:-1]) + " y desarrollo web con hosting"
+    names = ", ".join(p["name"] for p in PRODUCTOS[:-1]) + " y " + PRODUCTOS[-1]["name"]
     street = html.escape(PERSON["address"][0], quote=True)
     schema = ('{"@context":"https://schema.org","@graph":['
               '{"@type":"Organization","@id":"' + ORG + '","name":"GEBREY","url":"https://gebrey.es","email":"hola@gebrey.es","telephone":"+34822276190",'
               '"address":{"@type":"PostalAddress","streetAddress":"' + street + '","postalCode":"38005","addressLocality":"Santa Cruz de Tenerife","addressRegion":"Canarias","addressCountry":"ES"},'
-              '"description":"Software y web a medida: ' + names + '."},'
+              '"description":"Software y webs a medida desde Tenerife: ' + names + ', y webs y portales para clientes como Marnin."},'
               + ",".join(p["schema"] for p in PROJECTS)
               + ']}')
     extra = f'<script type="application/ld+json">{schema}</script>'
-    out = head("GEBREY — proyectos de software y web",
-               f"Proyectos de software y web: {names}.",
+    out = head("GEBREY — software para equipos y gestorías, y webs a medida",
+               "AppEquipo, el portal del empleado; GR Gestor, la facturación con VERI*FACTU; Citras y ViaConextaHub. Y webs a medida, como la de Marnin.",
                SITE + "/", "assets/css/site.css", extra, preview)
     out += header(home)
     out += f'''
@@ -235,8 +282,9 @@ def index_page(preview=False):
 <section class="scene hero" id="inicio" aria-label="GEBREY">
   <div class="wrap hero-in">
     <div class="mark-slot" data-fit="GEBREY" data-fit-wdth="88"><span class="mark-ph" aria-hidden="true">GEBREY</span><a class="mark" href="#inicio" aria-label="GEBREY, inicio"><span class="lw" style="--i:0"><span class="l">G</span></span><span class="lw" style="--i:1"><span class="l">E</span></span><span class="lw" style="--i:2"><span class="l">B</span></span><span class="lw r" style="--i:3"><span class="l">R</span></span><span class="lw" style="--i:4"><span class="l">E</span></span><span class="lw" style="--i:5"><span class="l">Y</span></span></a></div>
-    <h1 class="tag">Proyectos de software y web.</h1>
-    <nav class="index" aria-label="Proyectos">{index}</nav>
+    <h1 class="tag">Software para equipos, gestorías y agencias. Y webs a medida.</h1>
+    <p class="hero-lead">Hacemos y mantenemos nuestros productos, conectados entre sí, y las webs y los portales de nuestros clientes. Desde Tenerife.</p>
+    <nav class="index" aria-label="Productos, clientes y servicios">{index}</nav>
   </div>
   <a class="cue" href="#{PROJECTS[0]["slug"]}" aria-label="Bajar al primer proyecto"></a>
 </section>
@@ -278,7 +326,7 @@ def legal_page():
   <h2>Titular</h2>
   <p>{PERSON["name"]}. NIF 07.979.288-J. Domicilio: {PERSON["address"][0]}, {PERSON["address"][1]}. Correo: {PERSON["email"]}. Teléfono: {PERSON["phone"]}.</p>
   <h2>Qué es este sitio</h2>
-  <p>gebrey.es presenta los proyectos que desarrolla su titular y enlaza a cada uno de ellos. Cada proyecto tiene su propio titular, condiciones y política de privacidad en su web.</p>
+  <p>gebrey.es presenta los productos que desarrolla su titular y el trabajo hecho para sus clientes, y enlaza a cada uno. Cada producto y cada web de un cliente (como la de Marnin, que es de la Asociación de Socorrismo Marnin) tiene su propio titular, condiciones y política de privacidad.</p>
   <h2>Datos personales</h2>
   <p>Los únicos datos que se tratan son los que tú envías al escribir por correo o llamar: se usan para responderte y, si lo pides, para preparar un presupuesto. La base legal es tu consentimiento y, en su caso, la relación precontractual. No se ceden a terceros salvo obligación legal y se conservan mientras dure la conversación o la relación profesional.</p>
   <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a {PERSON["email"]}. También puedes reclamar ante la Agencia Española de Protección de Datos.</p>
@@ -364,13 +412,17 @@ def sitemap():
     return f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{body}</urlset>'
 
 def llms():
-    lines = ["# GEBREY", "", "> Escaparate de proyectos de software y web a medida.", "",
-             f"Contacto: {PERSON['email']} · {PERSON['phone']} · {PERSON['address'][0]}, {PERSON['address'][1]}", "", "## Proyectos", ""]
-    for p in PROJECTS:
-        site = p["url"] if p["url"].startswith("http") else "https://gebrey.es/#web"
-        app = f" App: {p['url2']}" if p.get("url2") else ""
-        kicker = p["kicker"][0].lower() + p["kicker"][1:]   # solo la inicial: VERI*FACTU y SaaS se quedan como son
-        lines.append(f"- {p['name']} ({kicker}): {p['one']} Sitio: {site}{app}")
+    lines = ["# GEBREY", "", "> Software y webs a medida desde Tenerife: productos propios conectados entre sí (AppEquipo, GR Gestor, Citras y ViaConextaHub) y webs y portales para clientes.", "",
+             f"Contacto: {PERSON['email']} · {PERSON['phone']} · {PERSON['address'][0]}, {PERSON['address'][1]}"]
+    for kind, titulo in (("producto", "Productos"), ("cliente", "Clientes"), ("servicio", "Servicios")):
+        lines += ["", f"## {titulo}", ""]
+        for p in (x for x in PROJECTS if x["kind"] == kind):
+            site = p["url"] if p["url"].startswith("http") else "https://gebrey.es/#web"
+            app = f" Más: {p['url2']}" if p.get("url2") else ""
+            primera = p["kicker"].split()[0]
+            # solo la inicial, y no en un nombre propio como AppEquipo: VERI*FACTU y GR Gestor se quedan como son
+            kicker = p["kicker"] if any(c.isupper() for c in primera[1:]) else p["kicker"][0].lower() + p["kicker"][1:]
+            lines.append(f"- {p['name']} ({kicker}): {p['one']} Sitio: {site}{app}")
     lines += ["", "## Páginas", "", "- [Inicio](https://gebrey.es/)", "- [Aviso legal y privacidad](https://gebrey.es/legal.html)"]
     return "\n".join(lines) + "\n"
 

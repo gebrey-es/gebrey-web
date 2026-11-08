@@ -21,6 +21,7 @@
   --c-grgestor: #e8ac4a;        /* GR Gestor: ámbar malvasía */
   --c-marnin: #4fa8ff;          /* Marnin: azul atlántico */
   --c-web: #b9a7ff;             /* Web y hosting: lila */
+  --c-jornada: #ff8fb8;         /* Jornada (AppEquipo + GR Gestor): rosa */
   --c: var(--accent);
   --on-c: #1a0d0a;
 
@@ -58,6 +59,7 @@
     --c-grgestor: #935c00;
     --c-marnin: #1b6fd0;
     --c-web: #6a52d8;
+    --c-jornada: #c2316b;
     --on-c: #fff8ee;
     color-scheme: light;
   }
@@ -77,6 +79,7 @@
   --c-grgestor: #935c00;
   --c-marnin: #1b6fd0;
   --c-web: #6a52d8;
+  --c-jornada: #c2316b;
   --on-c: #fff8ee;
   color-scheme: light;
 }
@@ -250,6 +253,13 @@ html.motion .tag { clip-path: inset(0 100% 0 0); animation: wipe 1s var(--ease-o
 .index a:hover::before { transform: scale(1.5); }
 html.motion .index a { opacity: 0; animation: fade 0.8s var(--ease-out) forwards; animation-delay: calc(1.1s + var(--i) * 0.09s); }
 @keyframes fade { to { opacity: 1; } }
+.hero-lead { font-size: var(--fs-1); color: var(--ink-2); max-width: 46ch; text-wrap: pretty; }
+html.motion .hero-lead { opacity: 0; animation: fade 0.9s var(--ease-out) 1s forwards; }
+/* el índice, por tipos: cada etiqueta junto a sus enlaces */
+.index { column-gap: 2.6rem; row-gap: .9rem; }
+.index-grupo { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.6rem; }
+.index-g { font-size: .78em; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+html.motion .index-g { opacity: 0; animation: fade 0.8s var(--ease-out) forwards; animation-delay: calc(1.1s + var(--i) * 0.09s); }
 .cue {
   position: absolute; left: 50%; bottom: max(1.2rem, env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
   width: 1px; height: 56px; background: var(--line-strong); overflow: hidden; text-decoration: none;
@@ -258,6 +268,10 @@ html.motion .index a { opacity: 0; animation: fade 0.8s var(--ease-out) forwards
 @keyframes cue { 0% { transform: translateY(-100%); } 55% { transform: translateY(0); } 100% { transform: translateY(100%); } }
 
 /* escena de proyecto */
+.s-kind {
+  display: inline-block; margin-right: .7em; padding: .12em .62em; border: 1px solid currentColor; border-radius: 999px;
+  font-size: .62em; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; vertical-align: .22em;
+}
 .s-kicker { --k: clamp(0, calc((var(--e) - 0.05) / 0.35), 1); color: var(--c); font-weight: 500; font-size: var(--fs-1); clip-path: inset(0 calc((1 - var(--k)) * 100%) 0 0); }
 .s-name {
   --w: 7.4;                                /* anchura del nombre en em (la calcula el JS) */
@@ -335,6 +349,21 @@ html.motion .index a { opacity: 0; animation: fade 0.8s var(--ease-out) forwards
 }
 .shot.video .phone video { width: 100%; height: 100%; object-fit: cover; }
 
+/* Jornada: del fichaje en AppEquipo a las variables del mes en GR Gestor */
+.shot.flujo { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: center; gap: 6%; }
+.shot.flujo .pasos { display: grid; gap: .45em; align-content: center; }
+.shot.flujo .paso { display: grid; gap: .3em; justify-items: start; opacity: var(--sp); transform: translateX(calc((1 - var(--sp)) * -1em)); }
+.shot.flujo .paso b { color: var(--ink); font-weight: 600; }
+.shot.flujo .linea { width: 1px; height: 1.1em; margin-left: 1.1em; background: var(--c); transform: scaleY(var(--sp)); transform-origin: top; }
+.shot.flujo .nomina { border: 1px solid var(--line); border-radius: 10px; padding: 9% 8%; display: grid; gap: .75em; opacity: var(--sp); transform: translateY(calc((1 - var(--sp)) * 1em)); }
+.shot.flujo .nomina-t { color: var(--c); font-weight: 600; }
+.shot.flujo .row span:first-child { color: var(--ink-2); }
+/* en una pantalla estrecha, el flujo solo con sus tres pasos */
+@container (max-width: 520px) {
+  .shot.flujo .paso > span:not(.chip) { display: none; }
+  .shot.flujo .linea { height: 1.6em; }
+  .shot.flujo .nomina { gap: .55em; }
+}
 /* Web y hosting: ventana de navegador + estado */
 .shot.web { grid-template-rows: auto 1fr auto; gap: 4%; }
 .shot.web .win { border: 1px solid var(--line); border-radius: 8px; padding: 5%; display: grid; grid-template-columns: 1fr 2fr; gap: 6%; opacity: var(--sp); }
