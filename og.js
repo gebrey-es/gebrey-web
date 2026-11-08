@@ -9,7 +9,7 @@ const path = require('path');
 (async () => {
   const root = __dirname;
   const projects = JSON.parse(execFileSync('python3', ['-c',
-    'import build, json; print(json.dumps([[p["name"], p["color"]] for p in build.PROJECTS]))'], { cwd: root }));
+    'import build, json; print(json.dumps([[p["name"], p["color"]] for p in build.PROJECTS if p["slug"] != "jornada"]))'], { cwd: root }));
   const css = fs.readFileSync(path.join(root, 'src/assets/css/site.css'), 'utf8');
   const colors = {};
   for (const m of css.matchAll(/(--c-[a-z]+):\s*(#[0-9a-f]{6})/gi)) if (!colors[m[1]]) colors[m[1]] = m[2];  // la primera es la del tema oscuro
