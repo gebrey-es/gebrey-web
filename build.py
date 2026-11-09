@@ -24,8 +24,8 @@ MOON = '<svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" 
 
 # El nombre solo aparece en el aviso legal (lo exige la LSSI); la portada es un escaparate de proyectos.
 PERSON = dict(
-    name="Francisco Gebrie Vicente", email="hola@gebrey.es", phone="+34 822 276 190", phone_tel="+34822276190",
-    address=["Avda. Tres de Mayo 30, Edificio Ahlers, 1.ª planta", "38005 Santa Cruz de Tenerife"],
+    name="Francisco Gebrié Vicente", email="hola@gebrey.es", phone="+34 822 276 190", phone_tel="+34822276190",
+    address=["Avda. Tres de Mayo 30, Edificio Adhlers, 1.ª planta", "38005 Santa Cruz de Tenerife"],
 )
 ORG = "https://gebrey.es/#org"
 INDEXNOW_KEY = "bf8285b213157c518309b0364a3946ae"
