@@ -293,6 +293,47 @@ def legal_page():
     out += '</body></html>'
     return out
 
+# ---------- política de privacidad de la app Sorteo en Regla ----------
+# La enlazan la ficha de Google Play y el mensaje de consentimiento de AdMob; no sale en la portada.
+SORTEO_URL = SITE + "/sorteo-en-regla-privacidad.html"
+
+def sorteo_privacy_page():
+    out = head("Política de privacidad — Sorteo en Regla", "Política de privacidad de la app Sorteo en Regla para Android.", SORTEO_URL, "assets/css/site.css")
+    out += header("index.html")
+    out += f"""
+<main id="main" class="wrap"><div class="legal">
+  <h1>Política de privacidad de Sorteo en Regla</h1>
+  <p>Última actualización: 11 de noviembre de 2026.</p>
+  <p>Sorteo en Regla es una app para Android (paquete es.gebrey.sorteoenregla) que sirve para hacer sorteos con bases legales y acta. Es gratuita y muestra anuncios. Esta página explica qué datos trata y para qué.</p>
+  <h2>Responsable</h2>
+  <p>{PERSON["name"]}. Domicilio: {PERSON["address"][0]}, {PERSON["address"][1]}. Correo: {PERSON["email"]}.</p>
+  <h2>Qué datos se tratan</h2>
+  <p><strong>Sorteos con lista pegada.</strong> Los nombres que el organizador escribe o pega se quedan en su propio dispositivo: no se envían a ningún servidor.</p>
+  <p><strong>Sorteos con código QR.</strong> Para que la gente pueda apuntarse desde su móvil, estos sorteos se guardan en la nube. Se guardan el título, el premio, el nombre del organizador y las bases que este escribe; el nombre que indica cada participante al apuntarse y, solo si el organizador lo pide, un dato de contacto; la fecha en que se apunta y el resultado del sorteo.</p>
+  <p><strong>Identificador anónimo.</strong> La app no pide registro, correo ni contraseña. Al usar los sorteos con QR se crea un identificador anónimo ligado a la instalación, que sirve para que cada persona se apunte una sola vez y para que solo el organizador pueda gestionar su sorteo.</p>
+  <p><strong>Anuncios.</strong> La app muestra anuncios de Google AdMob. Para ello Google puede tratar el identificador de publicidad del dispositivo, la dirección IP, datos del dispositivo y datos de uso de los anuncios.</p>
+  <p>La app no accede a tus contactos, a tu ubicación ni a tus archivos. El lector de QR usa la cámara solo en el momento de escanear y no guarda ni envía imágenes.</p>
+  <h2>Para qué y con qué base</h2>
+  <p>Los datos de los sorteos se usan únicamente para hacer el sorteo, mostrar a cada participante su resultado y que el organizador pueda entregar el premio. La base es la participación voluntaria en el sorteo. Los anuncios personalizados solo se muestran con tu consentimiento, que se pide al abrir la app en el Espacio Económico Europeo, el Reino Unido y Suiza y que puedes cambiar cuando quieras desde las opciones de privacidad de la app.</p>
+  <h2>Quién ve los datos</h2>
+  <p>La lista de participantes de un sorteo solo la ve su organizador. Cada participante ve su propia participación y el resultado. El organizador decide por su cuenta qué hace con los datos de quienes se apuntan a su sorteo y responde de ese uso conforme a las bases que publica.</p>
+  <p>Los datos se alojan en Google Firebase (Cloud Firestore y Firebase Authentication), con la base de datos situada en la Unión Europea. Los anuncios los sirve Google AdMob. Ambos servicios son de Google Ireland Limited, que actúa como proveedor y puede tratar datos fuera del Espacio Económico Europeo con las garantías de su <a href="https://policies.google.com/privacy" rel="noopener">política de privacidad</a>. No se ceden datos a nadie más, salvo obligación legal.</p>
+  <h2>Cuánto tiempo se guardan</h2>
+  <p>Mientras el sorteo sigue abierto, cada participante puede borrar su participación desde la app. Los sorteos y sus participaciones se conservan para que el resultado y el acta se puedan consultar, hasta que se pida su eliminación.</p>
+  <h2>Cómo pedir que se borren tus datos</h2>
+  <p>Escribe a {PERSON["email"]} indicando el código del sorteo (seis caracteres) y el nombre con el que te apuntaste, o que eres su organizador. Los datos se eliminan en un plazo máximo de 30 días.</p>
+  <h2>Tus derechos</h2>
+  <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a {PERSON["email"]}. También puedes reclamar ante la Agencia Española de Protección de Datos.</p>
+  <h2>Menores</h2>
+  <p>La app no está dirigida a menores de 14 años.</p>
+  <h2>Cambios</h2>
+  <p>Si esta política cambia, la nueva versión se publicará en esta misma página con su fecha.</p>
+</div></main>
+"""
+    out += scripts("")
+    out += '</body></html>'
+    return out
+
 PHP = r"""<?php
 // Recibe el formulario de presupuesto de gebrey.es y lo manda por correo a hola@gebrey.es.
 // Responde JSON si lo pide el JS de la página; si no (sin JS), redirige a gracias.html.
@@ -422,6 +463,7 @@ def build():
         shutil.copytree(os.path.join(SRC, "assets"), os.path.join(d, "assets"))
     write(os.path.join(DIST, "index.html"), index_page(False))
     write(os.path.join(DIST, "legal.html"), legal_page())
+    write(os.path.join(DIST, "sorteo-en-regla-privacidad.html"), sorteo_privacy_page())
     write(os.path.join(DIST, "robots.txt"), ROBOTS)
     write(os.path.join(DIST, "sitemap.xml"), sitemap())
     write(os.path.join(DIST, "llms.txt"), llms())
