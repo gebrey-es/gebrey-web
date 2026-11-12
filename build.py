@@ -334,6 +334,40 @@ def sorteo_privacy_page():
     out += '</body></html>'
     return out
 
+# ---------- política de privacidad de la app Repertorios SCS ----------
+# La enlaza la ficha de Google Play; no sale en la portada.
+REPERTORIOS_URL = SITE + "/repertorios-scs-privacidad.html"
+
+def repertorios_privacy_page():
+    out = head("Política de privacidad — Repertorios SCS", "Política de privacidad de la app Repertorios SCS para Android.", REPERTORIOS_URL, "assets/css/site.css")
+    out += header("index.html")
+    out += f"""
+<main id="main" class="wrap"><div class="legal">
+  <h1>Política de privacidad de Repertorios SCS</h1>
+  <p>Última actualización: 12 de noviembre de 2026.</p>
+  <p>Repertorios SCS es una app para Android (paquete es.gebrey.repertorioposicion) para practicar con las preguntas de los repertorios oficiales publicados por el Servicio Canario de la Salud. Es de pago y no muestra anuncios. No es una app oficial: no pertenece al Servicio Canario de la Salud ni al Gobierno de Canarias, ni los representa.</p>
+  <h2>Responsable</h2>
+  <p>{PERSON["name"]}. Domicilio: {PERSON["address"][0]}, {PERSON["address"][1]}. Correo: {PERSON["email"]}.</p>
+  <h2>Qué datos se tratan</h2>
+  <p><strong>La app no recoge datos personales.</strong> No pide registro, nombre, correo ni contraseña, y no envía información a ningún servidor.</p>
+  <p><strong>Progreso de estudio.</strong> Las preguntas que aciertas y fallas, y la categoría que eliges, se guardan únicamente en tu dispositivo. Nadie más tiene acceso a ellas.</p>
+  <p>La app no accede a tus contactos, a tu ubicación, a la cámara ni a tus archivos. No incluye anuncios ni herramientas de analítica o seguimiento. Todo el contenido va dentro de la propia app, que funciona sin conexión.</p>
+  <h2>Compra de la app</h2>
+  <p>La compra se hace en Google Play. El pago lo gestiona Google conforme a su <a href="https://policies.google.com/privacy" rel="noopener">política de privacidad</a>; la app no recibe ni guarda tus datos de pago.</p>
+  <h2>Cuánto tiempo se guardan y cómo borrarlos</h2>
+  <p>El progreso se conserva en tu dispositivo hasta que lo borres. Puedes borrarlo desde el apartado «Info» de la app, borrando los datos de la app en los ajustes de Android o desinstalándola.</p>
+  <h2>Tus derechos</h2>
+  <p>Como la app no recoge datos personales, no hay datos tuyos que consultar, corregir o eliminar en ningún servidor. Para cualquier duda puedes escribir a {PERSON["email"]}. También puedes reclamar ante la Agencia Española de Protección de Datos.</p>
+  <h2>Menores</h2>
+  <p>La app no está dirigida a menores de 14 años.</p>
+  <h2>Cambios</h2>
+  <p>Si esta política cambia, la nueva versión se publicará en esta misma página con su fecha.</p>
+</div></main>
+"""
+    out += scripts("")
+    out += '</body></html>'
+    return out
+
 PHP = r"""<?php
 // Recibe el formulario de presupuesto de gebrey.es y lo manda por correo a hola@gebrey.es.
 // Responde JSON si lo pide el JS de la página; si no (sin JS), redirige a gracias.html.
@@ -464,6 +498,7 @@ def build():
     write(os.path.join(DIST, "index.html"), index_page(False))
     write(os.path.join(DIST, "legal.html"), legal_page())
     write(os.path.join(DIST, "sorteo-en-regla-privacidad.html"), sorteo_privacy_page())
+    write(os.path.join(DIST, "repertorios-scs-privacidad.html"), repertorios_privacy_page())
     write(os.path.join(DIST, "robots.txt"), ROBOTS)
     write(os.path.join(DIST, "sitemap.xml"), sitemap())
     write(os.path.join(DIST, "llms.txt"), llms())
