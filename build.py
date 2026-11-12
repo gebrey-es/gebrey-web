@@ -334,18 +334,18 @@ def sorteo_privacy_page():
     out += '</body></html>'
     return out
 
-# ---------- política de privacidad de la app Repertorios SCS ----------
+# ---------- política de privacidad de la app Repertorios Oposiciones ----------
 # La enlaza la ficha de Google Play; no sale en la portada.
 REPERTORIOS_URL = SITE + "/repertorios-scs-privacidad.html"
 
 def repertorios_privacy_page():
-    out = head("Política de privacidad — Repertorios SCS", "Política de privacidad de la app Repertorios SCS para Android.", REPERTORIOS_URL, "assets/css/site.css")
+    out = head("Política de privacidad — Repertorios Oposiciones", "Política de privacidad de la app Repertorios Oposiciones para Android.", REPERTORIOS_URL, "assets/css/site.css")
     out += header("index.html")
     out += f"""
 <main id="main" class="wrap"><div class="legal">
-  <h1>Política de privacidad de Repertorios SCS</h1>
+  <h1>Política de privacidad de Repertorios Oposiciones</h1>
   <p>Última actualización: 12 de noviembre de 2026.</p>
-  <p>Repertorios SCS es una app para Android (paquete es.gebrey.repertorioposicion) para practicar con las preguntas de los repertorios oficiales publicados por el Servicio Canario de la Salud. Es gratuita y muestra anuncios; una suscripción mensual opcional los quita. No es una app oficial: no pertenece al Servicio Canario de la Salud ni al Gobierno de Canarias, ni los representa.</p>
+  <p>Repertorios Oposiciones es una app para Android (paquete es.gebrey.repertorioposicion) para practicar con las preguntas de los repertorios oficiales publicados por el Servicio Canario de la Salud. Es gratuita y muestra anuncios; una suscripción mensual opcional los quita. No es una app oficial: no pertenece al Servicio Canario de la Salud ni al Gobierno de Canarias, ni los representa.</p>
   <h2>Responsable</h2>
   <p>{PERSON["name"]}. Domicilio: {PERSON["address"][0]}, {PERSON["address"][1]}. Correo: {PERSON["email"]}.</p>
   <h2>Qué datos se tratan</h2>
