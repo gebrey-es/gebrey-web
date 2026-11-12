@@ -20,6 +20,7 @@
   --c-citras: #3fc1b0;          /* Citras: verde atlántico */
   --c-grgestor: #e8ac4a;        /* GR Gestor: ámbar malvasía */
   --c-marnin: #4fa8ff;          /* Marnin: azul atlántico */
+  --c-apps: #ff86c8;            /* Apps: rosa */
   --c-web: #b9a7ff;             /* Web y hosting: lila */
   --c: var(--accent);
   --on-c: #1a0d0a;
@@ -57,6 +58,7 @@
     --c-citras: #137e71;
     --c-grgestor: #935c00;
     --c-marnin: #1b6fd0;
+    --c-apps: #c4177a;
     --c-web: #6a52d8;
     --on-c: #fff8ee;
     color-scheme: light;
@@ -76,6 +78,7 @@
   --c-citras: #137e71;
   --c-grgestor: #935c00;
   --c-marnin: #1b6fd0;
+  --c-apps: #c4177a;
   --c-web: #6a52d8;
   --on-c: #fff8ee;
   color-scheme: light;
@@ -334,6 +337,12 @@ html.motion .index a { opacity: 0; animation: fade 0.8s var(--ease-out) forwards
   opacity: var(--sp); transform: translateY(calc((1 - var(--sp)) * 40%));
 }
 .shot.video .phone video { width: 100%; height: 100%; object-fit: cover; }
+/* Apps: un móvil 9:16 por app, uno al lado del otro, con su nombre encima */
+.shot.video.apps { display: flex; justify-content: center; align-items: flex-start; gap: 8%; padding: 5% 8% 0; }
+.shot.video.apps .app { width: 33%; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: .6em; }
+.shot.video.apps .app + .app { margin-top: 7%; }
+.shot.video.apps .cap { font-size: .68em; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--c); white-space: nowrap; opacity: var(--sp); transform: translateY(calc((1 - var(--sp)) * 1em)); }
+.shot.video.apps .phone { position: static; width: 100%; aspect-ratio: 9 / 16; border-radius: 1.7em; transform: translateY(calc((1 - var(--sp)) * 18%)); }
 
 /* Web y hosting: ventana de navegador + estado */
 .shot.web { grid-template-rows: auto 1fr auto; gap: 4%; }

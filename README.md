@@ -8,6 +8,7 @@ Web de GEBREY: un escaparate de proyectos en una sola página (ViaConextaHub, Ap
 - `build.py` — genera la página desde los datos de los proyectos (`PROJECTS`) y los textos de contacto (`PERSON`). Escribe `dist/` (para el servidor) y `preview/` (vista previa). Los vídeos de AppEquipo no se copian: se sirven desde `https://mbtenerife.es/video/` (`VIDEO_APPEQUIPO`).
 - `record.js` — graba con Playwright un recorrido por cada web (portátil 1200×750 y móvil 640×1386) y lo guarda en `src/assets/video/`; vuelve a ejecutarlo cuando cambie una web (`node record.js marnin` para una sola). Los vídeos de AppEquipo son los del portal y se sirven desde mbtenerife.es.
 - `record-citras.js` — graba la demo de Citras (mbtenerife.es/ambulancias) usándola en tiempo real, en portátil y móvil.
+- `record-apps.js` — vídeos móviles 9:16 de la escena Apps: graba la interfaz real de Sorteo en Regla (hace falta la carpeta `assets/` de su proyecto Android) y monta el pase de pantallas de Repertorios Oposiciones con las capturas de su ficha de Google Play.
 - `og.js` — regenera `src/assets/img/og.png` (la imagen al compartir) con Playwright; ejecútalo si cambia la lista de proyectos.
 - `site/` — copia de `dist/` que se publica. **Es lo que sube el workflow.**
 - `shot.js` — capturas con Playwright para revisar escritorio, móvil y tema claro.

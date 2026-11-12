@@ -51,6 +51,19 @@ def video_shot(lap, mob, lap_label, mob_label, local=True):
     return (f'<div class="shot video">\n  {tag("lap", lap, lap_label, 0)}\n'
             f'  <div class="phone pc" style="--i:3">{tag("mob", mob, mob_label, 3)}</div>\n</div>')
 
+PLAY_SORTEO = "https://play.google.com/store/apps/details?id=es.gebrey.sorteoenregla"
+PLAY_REPERTORIOS = "https://play.google.com/store/apps/details?id=es.gebrey.repertorioposicion"
+
+def apps_shot(apps):
+    """Pantalla con un móvil 9:16 por app (vídeos de record-apps.js en src/assets/video/<slug>-movil)."""
+    cols = []
+    for i, (slug, name, label) in enumerate(apps):
+        base = f"assets/video/{slug}-movil"
+        cols.append(f'<div class="app pc" style="--i:{1 + i * 2}"><span class="cap">{html.escape(name)}</span>'
+                    f'<div class="phone"><video class="mob" muted playsinline loop preload="none" disablepictureinpicture disableremoteplayback'
+                    f' data-src="{base}" data-v="{v(base + ".mp4")}" aria-label="{html.escape(label, quote=True)}"></video></div></div>')
+    return '<div class="shot video apps">\n  ' + '\n  '.join(cols) + '\n</div>'
+
 def site_shot(slug, name):
     """Recorrido grabado por la web del proyecto (record.js): portátil y móvil."""
     return video_shot(f"assets/video/{slug}-portatil", f"assets/video/{slug}-movil",
@@ -91,6 +104,19 @@ PROJECTS = [
         url="https://grgestor.es", link="Entrar en grgestor.es",
         schema='{"@type":"SoftwareApplication","name":"GR Gestor","applicationCategory":"FinanceApplication","operatingSystem":"Android, Web","url":"https://grgestor.es","description":"App de facturación con VERI*FACTU para autónomos y micropymes: facturas escritas en una frase, el IVA y el IRPF apartados en sobres y conexión con su gestoría, que trabaja con GR Gestor Despacho.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis hasta 3 facturas al mes"},{"@type":"Offer","price":"2.99","priceCurrency":"EUR","description":"Facturas ilimitadas, al mes, IVA incluido"}]}',
         shot=site_shot("grgestor", "GR Gestor")),
+    dict(
+        slug="apps", name="Apps", color="var(--c-apps)",
+        kicker="Apps para Android, en Google Play",
+        one="Sorteo en Regla: sorteos con bases legales y acta, por lista o con un QR al que la gente se apunta desde el móvil. Repertorios Oposiciones: las preguntas de los repertorios oficiales, para practicar. Gratis, con anuncios.",
+        url=PLAY_SORTEO, link="Sorteo en Regla en Google Play",
+        url2=PLAY_REPERTORIOS, link2="Repertorios Oposiciones en Google Play",
+        llm=f"Sorteo en Regla (sorteos con bases legales y acta, por lista o con código QR; Android, gratis con anuncios): Google Play {PLAY_SORTEO} · Privacidad {SITE}/sorteo-en-regla-privacidad.html. "
+            f"Repertorios Oposiciones (practicar con las preguntas de los repertorios oficiales de oposiciones; Android, gratis con anuncios y suscripción opcional sin anuncios): Google Play {PLAY_REPERTORIOS} · Privacidad {SITE}/repertorios-scs-privacidad.html",
+        schema='{"@type":"SoftwareApplication","name":"Sorteo en Regla","applicationCategory":"UtilitiesApplication","operatingSystem":"Android","installUrl":"' + PLAY_SORTEO + '","description":"App para hacer sorteos con bases legales y acta: pegando una lista de nombres o con un código QR al que la gente se apunta desde su móvil. Gratuita, con anuncios.","author":{"@id":"' + ORG + '"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}},'
+               '{"@type":"SoftwareApplication","name":"Repertorios Oposiciones","applicationCategory":"EducationalApplication","operatingSystem":"Android","installUrl":"' + PLAY_REPERTORIOS + '","description":"App para practicar con las preguntas de los repertorios oficiales de oposiciones, con la explicación de cada respuesta. Gratuita con anuncios; una suscripción mensual opcional los quita.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR"},{"@type":"Offer","price":"2.99","priceCurrency":"EUR","description":"Suscripción mensual sin anuncios"}]}',
+        # dos móviles: la interfaz real de Sorteo en Regla haciendo un sorteo y el pase de pantallas de Repertorios (record-apps.js)
+        shot=apps_shot([("sorteoenregla", "Sorteo en Regla", "Vídeo de Sorteo en Regla: la lista de participantes, el sorteo con los nombres girando, el ganador con confeti y el acta"),
+                        ("repertorios", "Repertorios Oposiciones", "Pantallas de Repertorios Oposiciones: inicio, temario con la explicación de cada tema, test y repaso")])),
     dict(
         slug="marnin", name="Marnin", color="var(--c-marnin)",
         kicker="Web y portal de empleados de una asociación de socorrismo",
@@ -450,7 +476,7 @@ def llms():
         site = p["url"] if p["url"].startswith("http") else "https://gebrey.es/#web"
         app = f" App: {p['url2']}" if p.get("url2") else ""
         kicker = p["kicker"][0].lower() + p["kicker"][1:]   # solo la inicial: VERI*FACTU y SaaS se quedan como son
-        lines.append(f"- {p['name']} ({kicker}): {p['one']} Sitio: {site}{app}")
+        lines.append(f"- {p['name']} ({kicker}): {p.get('llm') or (p['one'] + ' Sitio: ' + site + app)}")
     lines += ["", "## Páginas", "", "- [Inicio](https://gebrey.es/)", "- [Aviso legal y privacidad](https://gebrey.es/legal.html)"]
     return "\n".join(lines) + "\n"
 
