@@ -54,6 +54,14 @@ def video_shot(lap, mob, lap_label, mob_label, local=True):
 PLAY_SORTEO = "https://play.google.com/store/apps/details?id=es.gebrey.sorteoenregla"
 PLAY_REPERTORIOS = "https://play.google.com/store/apps/details?id=es.gebrey.repertorioposicion"
 
+def links(p):
+    """La fila de botones de una escena; vacía si el proyecto aún no tiene enlace (apps sin publicar)."""
+    if not p.get("url"):
+        return ""
+    a = f'<a class="s-link" href="{p["url"]}"{" rel=\"noopener\"" if p["url"].startswith("http") else ""}{" data-quote" if p.get("quote") else ""}>{p["link"]}</a>'
+    b = f'<a class="s-link s-link-2" href="{p["url2"]}" rel="noopener">{p["link2"]}</a>' if p.get("url2") else ""
+    return f'<div class="s-links">{a}{b}</div>'
+
 def apps_shot(apps):
     """Pantalla con un móvil 9:16 por app (vídeos de record-apps.js en src/assets/video/<slug>-movil)."""
     cols = []
@@ -106,14 +114,14 @@ PROJECTS = [
         shot=site_shot("grgestor", "GR Gestor")),
     dict(
         slug="apps", name="Apps", color="var(--c-apps)",
-        kicker="Apps para Android, en Google Play",
+        kicker="Apps para Android, pronto en Google Play",
         one="Sorteo en Regla: sorteos con bases legales y acta, por lista o con un QR al que la gente se apunta desde el móvil. Repertorios Oposiciones: las preguntas de los repertorios oficiales, para practicar. Gratis, con anuncios.",
-        url=PLAY_SORTEO, link="Sorteo en Regla en Google Play",
-        url2=PLAY_REPERTORIOS, link2="Repertorios Oposiciones en Google Play",
-        llm=f"Sorteo en Regla (sorteos con bases legales y acta, por lista o con código QR; Android, gratis con anuncios): Google Play {PLAY_SORTEO} · Privacidad {SITE}/sorteo-en-regla-privacidad.html. "
-            f"Repertorios Oposiciones (practicar con las preguntas de los repertorios oficiales de oposiciones; Android, gratis con anuncios y suscripción opcional sin anuncios): Google Play {PLAY_REPERTORIOS} · Privacidad {SITE}/repertorios-scs-privacidad.html",
-        schema='{"@type":"SoftwareApplication","name":"Sorteo en Regla","applicationCategory":"UtilitiesApplication","operatingSystem":"Android","installUrl":"' + PLAY_SORTEO + '","description":"App para hacer sorteos con bases legales y acta: pegando una lista de nombres o con un código QR al que la gente se apunta desde su móvil. Gratuita, con anuncios.","author":{"@id":"' + ORG + '"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}},'
-               '{"@type":"SoftwareApplication","name":"Repertorios Oposiciones","applicationCategory":"EducationalApplication","operatingSystem":"Android","installUrl":"' + PLAY_REPERTORIOS + '","description":"App para practicar con las preguntas de los repertorios oficiales de oposiciones, con la explicación de cada respuesta. Gratuita con anuncios; una suscripción mensual opcional los quita.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR"},{"@type":"Offer","price":"2.99","priceCurrency":"EUR","description":"Suscripción mensual sin anuncios"}]}',
+        # sin enlaces hasta que salgan de la prueba cerrada: PLAY_SORTEO y PLAY_REPERTORIOS serán sus fichas (url/link y url2/link2)
+        url=None, link=None,
+        llm=f"Sorteo en Regla (sorteos con bases legales y acta, por lista o con código QR; Android, gratis con anuncios; en pruebas, pendiente de publicar en Google Play): Privacidad {SITE}/sorteo-en-regla-privacidad.html. "
+            f"Repertorios Oposiciones (practicar con las preguntas de los repertorios oficiales de oposiciones; Android, gratis con anuncios y suscripción opcional sin anuncios; en pruebas, pendiente de publicar en Google Play): Privacidad {SITE}/repertorios-scs-privacidad.html",
+        schema='{"@type":"SoftwareApplication","name":"Sorteo en Regla","applicationCategory":"UtilitiesApplication","operatingSystem":"Android","description":"App para hacer sorteos con bases legales y acta: pegando una lista de nombres o con un código QR al que la gente se apunta desde su móvil. Gratuita, con anuncios.","author":{"@id":"' + ORG + '"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}},'
+               '{"@type":"SoftwareApplication","name":"Repertorios Oposiciones","applicationCategory":"EducationalApplication","operatingSystem":"Android","description":"App para practicar con las preguntas de los repertorios oficiales de oposiciones, con la explicación de cada respuesta. Gratuita con anuncios; una suscripción mensual opcional los quita.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR"},{"@type":"Offer","price":"2.99","priceCurrency":"EUR","description":"Suscripción mensual sin anuncios"}]}',
         # dos móviles: la interfaz real de Sorteo en Regla haciendo un sorteo y el pase de pantallas de Repertorios (record-apps.js)
         shot=apps_shot([("sorteoenregla", "Sorteo en Regla", "Vídeo de Sorteo en Regla: la lista de participantes, el sorteo con los nombres girando, el ganador con confeti y el acta"),
                         ("repertorios", "Repertorios Oposiciones", "Pantallas de Repertorios Oposiciones: inicio, temario con la explicación de cada tema, test y repaso")])),
@@ -237,7 +245,7 @@ def index_page(preview=False):
     <div class="s-row">
       <div class="s-text">
         <p class="s-one">{p["one"]}</p>
-        <div class="s-links"><a class="s-link" href="{p["url"]}"{' rel="noopener"' if p["url"].startswith("http") else ''}{' data-quote' if p.get("quote") else ''}>{p["link"]}</a>{f'<a class="s-link s-link-2" href="{p["url2"]}" rel="noopener">{p["link2"]}</a>' if p.get("url2") else ''}</div>
+        {links(p)}
       </div>
       <div class="s-shot">{p["shot"]}</div>
     </div>
@@ -473,7 +481,7 @@ def llms():
     lines = ["# GEBREY", "", "> Escaparate de proyectos de software y web a medida.", "",
              f"Contacto: {PERSON['email']} · {PERSON['phone']} · {PERSON['address'][0]}, {PERSON['address'][1]}", "", "## Proyectos", ""]
     for p in PROJECTS:
-        site = p["url"] if p["url"].startswith("http") else "https://gebrey.es/#web"
+        site = p["url"] if (p.get("url") or "").startswith("http") else "https://gebrey.es/#web"
         app = f" App: {p['url2']}" if p.get("url2") else ""
         kicker = p["kicker"][0].lower() + p["kicker"][1:]   # solo la inicial: VERI*FACTU y SaaS se quedan como son
         lines.append(f"- {p['name']} ({kicker}): {p.get('llm') or (p['one'] + ' Sitio: ' + site + app)}")
