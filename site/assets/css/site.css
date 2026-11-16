@@ -19,6 +19,7 @@
   --c-appequipo: #c6e85a;       /* AppEquipo: lima */
   --c-citras: #3fc1b0;          /* Citras: verde atlántico */
   --c-grgestor: #e8ac4a;        /* GR Gestor: ámbar malvasía */
+  --c-grgestorplus: #f2d24b;    /* GR Gestor Plus: el oro del «Plus» */
   --c-marnin: #4fa8ff;          /* Marnin: azul atlántico */
   --c-apps: #ff86c8;            /* Apps: rosa */
   --c-web: #b9a7ff;             /* Web y hosting: lila */
@@ -57,6 +58,7 @@
     --c-appequipo: #4d7f0a;
     --c-citras: #137e71;
     --c-grgestor: #935c00;
+    --c-grgestorplus: #786000;
     --c-marnin: #1b6fd0;
     --c-apps: #c4177a;
     --c-web: #6a52d8;
@@ -77,6 +79,7 @@
   --c-appequipo: #4d7f0a;
   --c-citras: #137e71;
   --c-grgestor: #935c00;
+  --c-grgestorplus: #786000;
   --c-marnin: #1b6fd0;
   --c-apps: #c4177a;
   --c-web: #6a52d8;

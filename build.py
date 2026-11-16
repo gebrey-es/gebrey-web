@@ -110,8 +110,34 @@ PROJECTS = [
         kicker="App de facturación con VERI*FACTU para autónomos y gestorías",
         one="Facturas lacradas con VERI*FACTU que se escriben en una frase desde el móvil, lo que es de Hacienda apartado en su sobre y la gestoría viéndolo todo al momento.",
         url="https://grgestor.es", link="Entrar en grgestor.es",
-        schema='{"@type":"SoftwareApplication","name":"GR Gestor","applicationCategory":"FinanceApplication","operatingSystem":"Android, Web","url":"https://grgestor.es","description":"App de facturación con VERI*FACTU para autónomos y micropymes: facturas escritas en una frase, el IVA y el IRPF apartados en sobres y conexión con su gestoría, que trabaja con GR Gestor Despacho.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis hasta 3 facturas al mes"},{"@type":"Offer","price":"2.99","priceCurrency":"EUR","description":"Facturas ilimitadas, al mes, IVA incluido"}]}',
+        schema='{"@type":"SoftwareApplication","name":"GR Gestor","applicationCategory":"FinanceApplication","operatingSystem":"Android, Web","url":"https://grgestor.es","description":"App de facturación con VERI*FACTU para autónomos y micropymes: facturas escritas en una frase, el IVA y el IRPF apartados en sobres y conexión con su gestoría, que trabaja con GR Gestor Despacho.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis hasta 3 facturas al mes"},{"@type":"Offer","price":"1.99","priceCurrency":"EUR","description":"Facturas ilimitadas, al mes, IVA incluido"},{"@type":"Offer","price":"20.30","priceCurrency":"EUR","description":"Facturas ilimitadas, al año, IVA incluido"}]}',
         shot=site_shot("grgestor", "GR Gestor")),
+    dict(
+        slug="grgestorplus", name="GR Gestor Plus", color="var(--c-grgestorplus)",
+        kicker="La app del negocio, su equipo y su gestoría, pronto en Google Play",
+        one="Presupuestos que el cliente acepta desde un enlace, facturas con VERI*FACTU, fichajes que nadie puede retocar, nóminas firmadas desde el móvil y las cartas de Hacienda explicadas. Gratis con anuncios o por módulos: se paga solo lo que se usa.",
+        # sin enlace hasta que esté publicada en Google Play
+        url=None, link=None,
+        llm="La súper app de la familia GR Gestor para negocios (autónomos y empresas), sus empleados y su gestoría: "
+            "presupuestos que el cliente acepta desde un enlace, facturas con VERI*FACTU, gastos con la foto del ticket, el trimestre, "
+            "escáner y herramientas PDF, cartas de la Administración explicadas con su plazo, fichajes (también sin cobertura), cuadrante, "
+            "ausencias, nóminas que se firman y el registro para la Inspección. Android y web; pendiente de publicar en Google Play. "
+            "Precios con IVA: gratis con anuncios (3 facturas al mes y hasta 3 personas); Cuentas 3,99 € al mes por negocio; "
+            "Papeles 2,99 € al mes por negocio; Equipo 1,69 € por persona y mes (1,49 € de la 51 a la 200 y 1,29 € desde la 201); "
+            "gestorías: 3,99 € por persona del despacho y, si incluyen a sus clientes, 4,99 € por cliente (3,99 € del 51 al 200 y 2,99 € desde el 201) "
+            "y Equipo para sus empleados. Al año, un 15 % menos.",
+        schema='{"@type":"SoftwareApplication","name":"GR Gestor Plus","applicationCategory":"BusinessApplication","operatingSystem":"Android, Web",'
+               '"description":"La app de la familia GR Gestor para negocios, sus empleados y su gestoría: presupuestos, facturas con VERI*FACTU, gastos, el trimestre, escáner y PDF, cartas de la Administración explicadas, fichajes, cuadrante, ausencias y nóminas firmadas. Gratis con anuncios o por módulos.",'
+               '"author":{"@id":"' + ORG + '"},"offers":['
+               '{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis con anuncios: 3 facturas al mes y hasta 3 personas"},'
+               '{"@type":"Offer","price":"3.99","priceCurrency":"EUR","description":"Cuentas: presupuestos, facturas con VERI*FACTU, gastos y trimestre; al mes por negocio, IVA incluido"},'
+               '{"@type":"Offer","price":"2.99","priceCurrency":"EUR","description":"Papeles: escáner, PDF, cartas explicadas y trámites; al mes por negocio, IVA incluido"},'
+               '{"@type":"Offer","price":"1.69","priceCurrency":"EUR","description":"Equipo: fichajes, cuadrante, ausencias y documentos firmados; por persona y mes, IVA incluido (1,49 € de la 51 a la 200 y 1,29 € desde la 201)"},'
+               '{"@type":"Offer","price":"3.99","priceCurrency":"EUR","description":"Gestorías: por persona del despacho y mes, IVA incluido; clientes incluidos desde 2,99 €"}]}',
+        # la app de verdad, grabada en su demo (record-plus.js): la gestoría en el portátil y la empresa en el móvil
+        shot=video_shot("assets/video/grgestorplus-portatil", "assets/video/grgestorplus-movil",
+                        "Vídeo de GR Gestor Plus en el portátil: la gestoría repasa su cartera, entra en un cliente, mira su cuadrante y sus cuentas",
+                        "Vídeo de GR Gestor Plus en el móvil: la empresa repasa lo pendiente, sus cuentas, sus papeles y quién trabaja hoy")),
     dict(
         slug="apps", name="Apps", color="var(--c-apps)",
         kicker="Apps para Android, pronto en Google Play",
