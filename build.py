@@ -115,11 +115,11 @@ PROJECTS = [
     dict(
         slug="grgestorplus", name="GR Gestor Plus", color="var(--c-grgestorplus)",
         kicker="La app del negocio, su equipo y su gestoría, pronto en Google Play",
-        one="Presupuestos que el cliente acepta desde un enlace, facturas con VERI*FACTU, fichajes que nadie puede retocar, nóminas firmadas desde el móvil y las cartas de Hacienda explicadas. Gratis con anuncios o por módulos: se paga solo lo que se usa.",
+        one="Presupuestos que el cliente acepta desde un enlace, facturas con su QR tributario, fichajes que nadie puede retocar, nóminas firmadas desde el móvil y las cartas de Hacienda explicadas. Gratis con anuncios o por módulos: se paga solo lo que se usa.",
         # sin enlace hasta que esté publicada en Google Play
         url=None, link=None,
         llm="La súper app de la familia GR Gestor para negocios (autónomos y empresas), sus empleados y su gestoría: "
-            "presupuestos que el cliente acepta desde un enlace, facturas con VERI*FACTU, gastos con la foto del ticket, el trimestre, "
+            "presupuestos que el cliente acepta desde un enlace, facturas con su QR tributario, gastos con la foto del ticket, el trimestre, "
             "escáner y herramientas PDF, cartas de la Administración explicadas con su plazo, fichajes (también sin cobertura), cuadrante, "
             "ausencias, nóminas que se firman y el registro para la Inspección. Lo que lee con IA (tickets, cartas, facturas dictadas) lo lee con la clave "
             "de IA de cada negocio o gestoría (por defecto, Google Gemini, gratis desde Google AI Studio). Android y web; pendiente de publicar en Google Play. "
@@ -128,10 +128,10 @@ PROJECTS = [
             "gestorías: 3,99 € por persona del despacho y, si incluyen a sus clientes, 4,99 € por cliente (3,99 € del 51 al 200 y 2,99 € desde el 201) "
             "y Equipo para sus empleados. Al año, un 15 % menos.",
         schema='{"@type":"SoftwareApplication","name":"GR Gestor Plus","applicationCategory":"BusinessApplication","operatingSystem":"Android, Web",'
-               '"description":"La app de la familia GR Gestor para negocios, sus empleados y su gestoría: presupuestos, facturas con VERI*FACTU, gastos, el trimestre, escáner y PDF, cartas de la Administración explicadas, fichajes, cuadrante, ausencias y nóminas firmadas. Gratis con anuncios o por módulos.",'
+               '"description":"La app de la familia GR Gestor para negocios, sus empleados y su gestoría: presupuestos, facturas con QR tributario, gastos, el trimestre, escáner y PDF, cartas de la Administración explicadas, fichajes, cuadrante, ausencias y nóminas firmadas. Gratis con anuncios o por módulos.",'
                '"author":{"@id":"' + ORG + '"},"offers":['
                '{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis con anuncios: 3 facturas al mes y hasta 3 personas"},'
-               '{"@type":"Offer","price":"3.99","priceCurrency":"EUR","description":"Cuentas: presupuestos, facturas con VERI*FACTU, gastos y trimestre; al mes por negocio, IVA incluido"},'
+               '{"@type":"Offer","price":"3.99","priceCurrency":"EUR","description":"Cuentas: presupuestos, facturas con QR tributario, gastos y trimestre; al mes por negocio, IVA incluido"},'
                '{"@type":"Offer","price":"2.99","priceCurrency":"EUR","description":"Papeles: escáner, PDF, cartas explicadas y trámites; al mes por negocio, IVA incluido"},'
                '{"@type":"Offer","price":"1.69","priceCurrency":"EUR","description":"Equipo: fichajes, cuadrante, ausencias y documentos firmados; por persona y mes, IVA incluido (1,49 € de la 51 a la 200 y 1,29 € desde la 201)"},'
                '{"@type":"Offer","price":"3.99","priceCurrency":"EUR","description":"Gestorías: por persona del despacho y mes, IVA incluido; clientes incluidos desde 2,99 €"}]}',
