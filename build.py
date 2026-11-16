@@ -126,7 +126,7 @@ PROJECTS = [
             "Precios con IVA: gratis con anuncios (3 facturas al mes y hasta 3 personas); Cuentas 3,99 € al mes por negocio; "
             "Papeles 2,99 € al mes por negocio; Equipo 1,69 € por persona y mes (1,49 € de la 51 a la 200 y 1,29 € desde la 201); "
             "gestorías: 3,99 € por persona del despacho y, si incluyen a sus clientes, 4,99 € por cliente (3,99 € del 51 al 200 y 2,99 € desde el 201) "
-            "y Equipo para sus empleados. Al año, un 15 % menos.",
+            "y Equipo para sus empleados. Al año, un 15 % menos. Privacidad: https://grgestor.es/plus-privacidad.html",
         schema='{"@type":"SoftwareApplication","name":"GR Gestor Plus","applicationCategory":"BusinessApplication","operatingSystem":"Android, Web",'
                '"description":"La app de la familia GR Gestor para negocios, sus empleados y su gestoría: presupuestos, facturas con QR tributario, gastos, el trimestre, escáner y PDF, cartas de la Administración explicadas, fichajes, cuadrante, ausencias y nóminas firmadas. Gratis con anuncios o por módulos.",'
                '"author":{"@id":"' + ORG + '"},"offers":['
@@ -434,46 +434,23 @@ def repertorios_privacy_page():
     out += '</body></html>'
     return out
 
-# ---------- política de privacidad de la app GR Gestor Plus ----------
-# La enlazan la ficha de Google Play (también como página para pedir el borrado de la cuenta) y el
-# mensaje de consentimiento de AdMob; no sale en la portada.
-PLUS_URL = SITE + "/grgestor-plus-privacidad.html"
+# ---------- GR Gestor Plus: su política de privacidad está en grgestor.es ----------
+# Vive en grgestor.es, la web de la familia GR Gestor (se publica desde App-Factura). Esta dirección la usaron la
+# ficha de Google Play, el mensaje de consentimiento de AdMob y versiones anteriores de la app: el .htaccess la
+# redirige con un 301 (el navegador conserva #borrar-cuenta) y, si aun así se llega aquí, esta página lleva a la nueva.
+PLUS_URL = "https://grgestor.es/plus-privacidad.html"
 
 def plus_privacy_page():
-    out = head("Política de privacidad — GR Gestor Plus", "Política de privacidad de la app GR Gestor Plus para Android y web.", PLUS_URL, "assets/css/site.css")
+    extra = ('<meta name="robots" content="noindex">'
+             f'<script>location.replace("{PLUS_URL}"+location.hash)</script>'
+             f'<noscript><meta http-equiv="refresh" content="0; url={PLUS_URL}"></noscript>')
+    out = head("Política de privacidad — GR Gestor Plus", "La política de privacidad de GR Gestor Plus está en grgestor.es.", PLUS_URL, "assets/css/site.css", extra)
     out += header("index.html")
     out += f"""
 <main id="main" class="wrap"><div class="legal">
   <h1>Política de privacidad de GR Gestor Plus</h1>
-  <p>Última actualización: 16 de noviembre de 2026.</p>
-  <p>GR Gestor Plus es una app para Android (paquete es.grgestor.plus) y web para negocios (autónomos y empresas), sus empleados y su gestoría: presupuestos y facturas, gastos, el trimestre, escáner y documentos, registro de jornada, turnos y ausencias. Se puede usar gratis, con anuncios, o con módulos de pago. Esta página explica qué datos trata y para qué.</p>
-  <h2>Responsable</h2>
-  <p>{PERSON["name"]}. Domicilio: {PERSON["address"][0]}, {PERSON["address"][1]}. Correo: {PERSON["email"]}.</p>
-  <p>De los datos de tu cuenta, el responsable es el titular de la app. De los datos que tu empresa o tu gestoría tratan en la app (el registro de jornada de su plantilla, sus documentos y sus facturas), la responsable es tu empresa, y el titular de la app es su encargado del tratamiento: los trata solo para prestarle el servicio.</p>
-  <h2>Qué datos se tratan y para qué</h2>
-  <p><strong>Tu cuenta.</strong> Nombre, correo y contraseña (guardada cifrada), para entrar en la app. Base: el contrato.</p>
-  <p><strong>Registro de jornada.</strong> Tus fichajes, turnos, ausencias y horas, para el registro que tu empresa está obligada a llevar (artículo 34.9 del Estatuto de los Trabajadores). Nunca se guardan datos de salud: una baja es solo una ausencia, sin motivo médico. Base: obligación legal de tu empresa.</p>
-  <p><strong>Ubicación al fichar.</strong> Solo si tu empresa la activa para ti y con un motivo, y solo en el momento de fichar; estar fuera nunca impide fichar. Las coordenadas se borran a los 90 días. Base: interés legítimo de tu empresa.</p>
-  <p><strong>Documentos y firmas.</strong> Las nóminas y documentos que tu empresa te entrega en la app y tu firma, que guarda la huella del documento, la fecha, la dirección IP y el navegador con que firmas, como prueba de la firma. Base: el contrato y la obligación legal.</p>
-  <p><strong>Cuentas del negocio.</strong> Presupuestos, facturas (con su registro VERI*FACTU), cobros, gastos y las fotos de los tickets que guardes, para la facturación y la contabilidad del negocio. Base: el contrato y la obligación legal.</p>
-  <p><strong>Escáner y PDF.</strong> Lo que escaneas y los PDF que preparas con las herramientas se quedan en tu móvil, salvo que decidas guardarlos en la app.</p>
-  <p><strong>Inteligencia artificial.</strong> Las fotos y los PDF que mandas para que la app los lea (un ticket, una carta de la Administración) se mandan, solo para responderte, al proveedor de IA que tu negocio o tu gestoría haya elegido con su propia clave (por defecto, Google Gemini, con una clave de Google AI Studio), con las condiciones que ese proveedor tenga con ellos. No se guardan: se guarda únicamente lo que tú decides guardar. Sin esa clave, la app no manda nada a ninguna IA. Las claves se guardan cifradas.</p>
-  <p><strong>Compras.</strong> Los planes de pago en Android se compran en Google Play. El pago lo gestiona Google; la app recibe el justificante de la compra para activar el plan y no ve tus datos de pago.</p>
-  <p><strong>Anuncios.</strong> Con el plan Gratis, la app de Android muestra anuncios de Google AdMob, que puede tratar el identificador de publicidad del dispositivo, la dirección IP, datos del dispositivo y datos de uso de los anuncios. Los anuncios personalizados solo se muestran con tu consentimiento, que se pide al abrir la app en el Espacio Económico Europeo, el Reino Unido y Suiza y que puedes cambiar en los ajustes de la app. Nunca hay anuncios al fichar ni con un plan de pago.</p>
-  <h2>Quién recibe los datos</h2>
-  <p>Tu empresa y, si tu empresa la conecta, su gestoría, con el permiso que la empresa le da (consultar o gestionar). La Agencia Tributaria, cuando la ley lo exige (VERI*FACTU). Y los proveedores que prestan el servicio, con contrato de encargo: el alojamiento, en la Unión Europea, y Google (Google Play y, en el plan Gratis, AdMob), que es Google Ireland Limited y puede tratar datos fuera del Espacio Económico Europeo con las garantías de su <a href="https://policies.google.com/privacy" rel="noopener">política de privacidad</a>. Si tu negocio o tu gestoría pone su clave de IA, también el proveedor que haya elegido, con su propio contrato. Los datos nunca se venden.</p>
-  <h2>Cuánto tiempo se guardan</h2>
-  <p>Los de tu cuenta, mientras la tengas. El registro de jornada, cuatro años, como exige la ley. Las facturas y sus registros, el plazo que marca la normativa tributaria. Las coordenadas de los fichajes, 90 días.</p>
-  <h2 id="borrar-cuenta">Borrar tu cuenta</h2>
-  <p>Puedes borrar tu cuenta desde la app, en «Tu cuenta» → «Borrar mi cuenta», o pedirlo escribiendo a {PERSON["email"]} desde el correo de tu cuenta. Se borran tu cuenta y tu acceso. Lo que la ley obliga a conservar (fichajes, firmas y facturas) se queda con el negocio al que pertenece el tiempo que marca la ley. Si eres titular de un negocio, antes hay que darlo de baja o pasar la titularidad a otra persona.</p>
-  <h2>Tus derechos</h2>
-  <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a {PERSON["email"]}. De los datos que trata tu empresa, puedes dirigirte también a ella. Y puedes reclamar ante la Agencia Española de Protección de Datos.</p>
-  <h2>Seguridad</h2>
-  <p>Las comunicaciones van cifradas, las contraseñas y las claves se guardan cifradas, y el registro de jornada queda sellado: nadie puede borrar ni cambiar un fichaje; las correcciones dejan el original a la vista.</p>
-  <h2>Menores</h2>
-  <p>La app es de uso profesional y no está dirigida a menores de 16 años.</p>
-  <h2>Cambios</h2>
-  <p>Si esta política cambia, la nueva versión se publicará en esta misma página con su fecha.</p>
+  <p>Está en grgestor.es, la web de la familia GR Gestor: <a href="{PLUS_URL}">grgestor.es/plus-privacidad.html</a>.</p>
+  <p>Para borrar tu cuenta: <a href="{PLUS_URL}#borrar-cuenta">grgestor.es/plus-privacidad.html#borrar-cuenta</a>.</p>
 </div></main>
 """
     out += scripts("")
@@ -573,6 +550,8 @@ RedirectMatch 301 ^/proyectos/viaconextahub\\.html$ /#viaconextahub
 RedirectMatch 301 ^/proyectos/citras\\.html$ /#citras
 RedirectMatch 301 ^/proyectos/teidetravel\\.html$ /
 RedirectMatch 301 ^/proyectos/web-hosting\\.html$ /#web
+# la privacidad de GR Gestor Plus está en grgestor.es (el navegador conserva #borrar-cuenta)
+RedirectMatch 301 ^/grgestor-plus-privacidad\\.html$ https://grgestor.es/plus-privacidad.html
 # tipos y caché: el HTML se revalida siempre; CSS/JS/imágenes llevan ?v=huella y pueden cachearse mucho
 AddType text/plain .txt
 AddType video/mp4 .mp4

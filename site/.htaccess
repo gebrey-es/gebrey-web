@@ -10,6 +10,8 @@ RedirectMatch 301 ^/proyectos/viaconextahub\.html$ /#viaconextahub
 RedirectMatch 301 ^/proyectos/citras\.html$ /#citras
 RedirectMatch 301 ^/proyectos/teidetravel\.html$ /
 RedirectMatch 301 ^/proyectos/web-hosting\.html$ /#web
+# la privacidad de GR Gestor Plus está en grgestor.es (el navegador conserva #borrar-cuenta)
+RedirectMatch 301 ^/grgestor-plus-privacidad\.html$ https://grgestor.es/plus-privacidad.html
 # tipos y caché: el HTML se revalida siempre; CSS/JS/imágenes llevan ?v=huella y pueden cachearse mucho
 AddType text/plain .txt
 AddType video/mp4 .mp4
