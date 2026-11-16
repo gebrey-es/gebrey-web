@@ -110,7 +110,7 @@ PROJECTS = [
         kicker="App de facturación con VERI*FACTU para autónomos y gestorías",
         one="Facturas lacradas con VERI*FACTU que se escriben en una frase desde el móvil, lo que es de Hacienda apartado en su sobre y la gestoría viéndolo todo al momento.",
         url="https://grgestor.es", link="Entrar en grgestor.es",
-        schema='{"@type":"SoftwareApplication","name":"GR Gestor","applicationCategory":"FinanceApplication","operatingSystem":"Android, Web","url":"https://grgestor.es","description":"App de facturación con VERI*FACTU para autónomos y micropymes: facturas escritas en una frase, el IVA y el IRPF apartados en sobres y conexión con su gestoría, que trabaja con GR Gestor Despacho.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis hasta 3 facturas al mes"},{"@type":"Offer","price":"1.99","priceCurrency":"EUR","description":"Facturas ilimitadas, al mes, IVA incluido"},{"@type":"Offer","price":"20.30","priceCurrency":"EUR","description":"Facturas ilimitadas, al año, IVA incluido"}]}',
+        schema='{"@type":"SoftwareApplication","name":"GR Gestor","applicationCategory":"FinanceApplication","operatingSystem":"Android, Web","url":"https://grgestor.es","description":"App de facturación con VERI*FACTU para autónomos y micropymes: facturas escritas en una frase, el IVA y el IRPF apartados en sobres y conexión con su gestoría, que trabaja con GR Gestor Despacho.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis hasta 3 facturas al mes"},{"@type":"Offer","price":"1.99","priceCurrency":"EUR","description":"Facturas ilimitadas, al mes, impuestos incluidos"},{"@type":"Offer","price":"20.30","priceCurrency":"EUR","description":"Facturas ilimitadas, al año, impuestos incluidos"}]}',
         shot=site_shot("grgestor", "GR Gestor")),
     dict(
         slug="grgestorplus", name="GR Gestor Plus", color="var(--c-grgestorplus)",
@@ -123,7 +123,7 @@ PROJECTS = [
             "escáner y herramientas PDF, cartas de la Administración explicadas con su plazo, fichajes (también sin cobertura), cuadrante, "
             "ausencias, nóminas que se firman y el registro para la Inspección. Lo que lee con IA (tickets, cartas, facturas dictadas) lo lee con la clave "
             "de IA de cada negocio o gestoría (por defecto, Google Gemini, gratis desde Google AI Studio). Android y web; pendiente de publicar en Google Play. "
-            "Precios con IVA: gratis con anuncios (3 facturas al mes y hasta 3 personas); Cuentas 3,99 € al mes por negocio; "
+            "Precios con impuestos incluidos: gratis con anuncios (3 facturas al mes y hasta 3 personas); Cuentas 3,99 € al mes por negocio; "
             "Papeles 2,99 € al mes por negocio; Equipo 1,69 € por persona y mes (1,49 € de la 51 a la 200 y 1,29 € desde la 201); "
             "gestorías: 3,99 € por persona del despacho y, si incluyen a sus clientes, 4,99 € por cliente (3,99 € del 51 al 200 y 2,99 € desde el 201) "
             "y Equipo para sus empleados. Al año, un 15 % menos. Privacidad: https://grgestor.es/plus-privacidad.html",
@@ -131,10 +131,10 @@ PROJECTS = [
                '"description":"La app de la familia GR Gestor para negocios, sus empleados y su gestoría: presupuestos, facturas con QR tributario, gastos, el trimestre, escáner y PDF, cartas de la Administración explicadas, fichajes, cuadrante, ausencias y nóminas firmadas. Gratis con anuncios o por módulos.",'
                '"author":{"@id":"' + ORG + '"},"offers":['
                '{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis con anuncios: 3 facturas al mes y hasta 3 personas"},'
-               '{"@type":"Offer","price":"3.99","priceCurrency":"EUR","description":"Cuentas: presupuestos, facturas con QR tributario, gastos y trimestre; al mes por negocio, IVA incluido"},'
-               '{"@type":"Offer","price":"2.99","priceCurrency":"EUR","description":"Papeles: escáner, PDF, cartas explicadas y trámites; al mes por negocio, IVA incluido"},'
-               '{"@type":"Offer","price":"1.69","priceCurrency":"EUR","description":"Equipo: fichajes, cuadrante, ausencias y documentos firmados; por persona y mes, IVA incluido (1,49 € de la 51 a la 200 y 1,29 € desde la 201)"},'
-               '{"@type":"Offer","price":"3.99","priceCurrency":"EUR","description":"Gestorías: por persona del despacho y mes, IVA incluido; clientes incluidos desde 2,99 €"}]}',
+               '{"@type":"Offer","price":"3.99","priceCurrency":"EUR","description":"Cuentas: presupuestos, facturas con QR tributario, gastos y trimestre; al mes por negocio, impuestos incluidos"},'
+               '{"@type":"Offer","price":"2.99","priceCurrency":"EUR","description":"Papeles: escáner, PDF, cartas explicadas y trámites; al mes por negocio, impuestos incluidos"},'
+               '{"@type":"Offer","price":"1.69","priceCurrency":"EUR","description":"Equipo: fichajes, cuadrante, ausencias y documentos firmados; por persona y mes, impuestos incluidos (1,49 € de la 51 a la 200 y 1,29 € desde la 201)"},'
+               '{"@type":"Offer","price":"3.99","priceCurrency":"EUR","description":"Gestorías: por persona del despacho y mes, impuestos incluidos; clientes incluidos desde 2,99 €"}]}',
         # la app de verdad, grabada en su demo (record-plus.js): la gestoría en el portátil y la empresa en el móvil
         shot=video_shot("assets/video/grgestorplus-portatil", "assets/video/grgestorplus-movil",
                         "Vídeo de GR Gestor Plus en el portátil: la gestoría repasa su cartera, entra en un cliente, mira su cuadrante y sus cuentas",
