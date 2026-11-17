@@ -1,8 +1,11 @@
-/* Graba la demo de Citras (https://mbtenerife.es/ambulancias/) usándola de verdad, en tiempo real, y deja
-   src/assets/video/citras-portatil.{mp4,webm} (1200×750) y citras-movil.{mp4,webm} (640×1386), como los
-   vídeos del portal de AppEquipo. Portátil: el centro de coordinación recibe un aviso urgente, activa la
-   ambulancia que antes llega, replanifica las rutas y repasa la flota. Móvil: la tripulación revisa la
-   ambulancia y el paciente sigue su traslado. La captura es en tiempo real (screencast de CDP) y se monta con ffmpeg.
+/* Graba la demo de Citras (https://citras.es/demo/, la de GebRey) usándola de verdad, en tiempo real, y deja
+   src/assets/video/citras-portatil.{mp4,webm} (1200×750) y citras-movil.{mp4,webm} (640×1386). Portátil: el
+   centro de coordinación recibe un aviso urgente, activa el vehículo libre que antes llega, rehace las rutas y
+   repasa la flota. Móvil: el equipo de un vehículo guarda su revisión y quien espera lo ve llegar en el mapa.
+   La captura es en tiempo real (screencast de CDP) y se monta con ffmpeg.
+   Los vídeos de ahora son los de la portada de citras.es: los graba, con este mismo guion, `python3 tools/citras.py
+   videos` en gebrey-es/mbtenerife (la web de citras.es), y se copian aquí. Mientras citras.es no esté publicada,
+   CITRAS_DEMO puede apuntar a esa demo servida en local.
    Uso: node record-citras.js        (los dos)
         node record-citras.js d      (solo portátil; m = solo móvil) */
 const { chromium, devices } = require('playwright');
@@ -11,7 +14,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
-const URL = 'https://mbtenerife.es/ambulancias/index.html';
+const URL = process.env.CITRAS_DEMO || 'https://citras.es/demo/';
 const OUT = path.join(__dirname, 'src', 'assets', 'video');
 const FPS = 30;
 
