@@ -1,0 +1,38 @@
+name: Comprobar las demos
+
+# Abre, desde fuera, la demo sin cuenta de cada proyecto que enlaza gebrey.es y dice si responde, sin
+# cambiar nada. Para las que tienen interruptor (GR Gestor y GR Gestor Plus), dice además si está abierta.
+on:
+  workflow_dispatch:
+
+jobs:
+  demos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Demos
+        run: |
+          fallos=0
+          pagina() { # nombre, dirección
+            codigo=$(curl -sS -L -o /tmp/pagina --max-time 30 -w "%{http_code}" "$2" || echo 000)
+            titulo=$(grep -o '<title>[^<]*' /tmp/pagina 2>/dev/null | head -n1 | sed 's/<title>//')
+            printf '%-34s %s → HTTP %s · %s\n' "$1" "$2" "$codigo" "${titulo:-sin título}"
+            [ "$codigo" = 200 ] || { echo "::error::$1 no responde ($2)"; fallos=$((fallos + 1)); }
+          }
+          interruptor() { # nombre, dirección de /api/demo
+            respuesta=$(curl -sS --max-time 30 "$2" || true)
+            printf '%-34s %s → %s\n' "$1" "$2" "$respuesta"
+            case "$respuesta" in *'"abierta":true'*) ;; *) echo "::warning::$1: la demo no está abierta"; esac
+          }
+          pagina "ViaConextaHub" https://app.conexta.es/demo
+          pagina "AppEquipo (por sectores)" https://mbtenerife.es/demostracion/
+          pagina "AppEquipo (el portal)" https://mbtenerife.es/demo/
+          pagina "Citras" https://mbtenerife.es/ambulancias/
+          pagina "AppEquipo Fichajes" https://fichajes.appequipo.es/demo/
+          pagina "GR Gestor" https://grgestor.es/app/demo/autonomo
+          pagina "GR Gestor Despacho" https://grgestor.es/despacho/demo/gestoria
+          interruptor "GR Gestor (interruptor)" https://api.grgestor.es/api/demo
+          pagina "GR Gestor Plus" https://plus.grgestor.es/app/demo/administrador
+          pagina "GR Fichajes" https://plus.grgestor.es/fichajes/demo/empleado
+          interruptor "GR Gestor Plus (interruptor)" https://plus.grgestor.es/api/demo
+          [ "$fallos" = 0 ] || exit 1
