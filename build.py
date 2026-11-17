@@ -83,6 +83,7 @@ PROJECTS = [
         kicker="Plataforma SaaS para agencias de viajes",
         one="Un solo buscador para que cada agencia reserve con todos sus mayoristas, usando sus propias claves.",
         url="https://viaconextahub.es", link="Entrar en viaconextahub.es",
+        url2="https://app.conexta.es/demo", link2="Probar la demo",
         schema='{"@type":"SoftwareApplication","name":"ViaConextaHub","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://viaconextahub.es","description":"Plataforma SaaS que conecta a las agencias de viajes con sus mayoristas usando las claves de cada agencia.","author":{"@id":"' + ORG + '"},"offers":{"@type":"Offer","price":"25","priceCurrency":"EUR","description":"Suscripción mensual, más impuestos"}}',
         shot=site_shot("viaconextahub", "ViaConextaHub")),
     dict(
@@ -90,6 +91,7 @@ PROJECTS = [
         kicker="Control horario y portal del empleado a medida",
         one="Fichajes que nadie puede retocar, cuadrantes de turnos, nóminas firmadas desde el móvil y partes diarios, con el nombre y el logo de tu empresa.",
         url="https://mbtenerife.es", link="Entrar en mbtenerife.es",
+        url2="https://mbtenerife.es/demostracion/", link2="Probar la demo",
         schema='{"@type":"SoftwareApplication","name":"AppEquipo","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://mbtenerife.es","description":"Control horario y portal del empleado para equipos de campo: registro de jornada inalterable, cuadrantes, nóminas firmadas y partes.","author":{"@type":"Organization","name":"MBTenerife","url":"https://mbtenerife.es","parentOrganization":{"@id":"' + ORG + '"}},"offers":{"@type":"Offer","price":"3.50","priceCurrency":"EUR","description":"Desde 3,50 € por persona, según el volumen de la empresa"}}',
         # los vídeos reales del portal, servidos desde mbtenerife.es
         shot=video_shot(f"{VIDEO_APPEQUIPO}/portatil", f"{VIDEO_APPEQUIPO}/movil",
@@ -100,6 +102,7 @@ PROJECTS = [
         kicker="Coordinación de flotas de vehículos",
         one="Cada vehículo, cada servicio y cada aviso en una sola pantalla: rutas que se rehacen solas, avisos urgentes y un enlace para seguir cada vehículo en el mapa.",
         url="https://mbtenerife.es/citras/", link="Conocer Citras",
+        url2="https://mbtenerife.es/ambulancias/", link2="Probar la demo",
         schema='{"@type":"SoftwareApplication","name":"Citras","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://mbtenerife.es/citras/","description":"Citras coordina flotas de vehículos: rutas que se hacen y se rehacen solas, avisos urgentes y un enlace para seguir cada vehículo en el mapa. Un producto de MBTenerife.","author":{"@type":"Organization","name":"MBTenerife","url":"https://mbtenerife.es","parentOrganization":{"@id":"' + ORG + '"}}}',
         # la demo de Citras usada de verdad (record-citras.js), no un recorrido por su web
         shot=video_shot("assets/video/citras-portatil", "assets/video/citras-movil",
@@ -110,14 +113,16 @@ PROJECTS = [
         kicker="App de facturación con VERI*FACTU para autónomos y gestorías",
         one="Facturas lacradas con VERI*FACTU que se escriben en una frase desde el móvil, lo que es de Hacienda apartado en su sobre y la gestoría viéndolo todo al momento.",
         url="https://grgestor.es", link="Entrar en grgestor.es",
+        url2="https://grgestor.es/app/demo/autonomo", link2="Probar la demo",
         schema='{"@type":"SoftwareApplication","name":"GR Gestor","applicationCategory":"FinanceApplication","operatingSystem":"Android, Web","url":"https://grgestor.es","description":"App de facturación con VERI*FACTU para autónomos y micropymes: facturas escritas en una frase, el IVA y el IRPF apartados en sobres y conexión con su gestoría, que trabaja con GR Gestor Despacho.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis hasta 3 facturas al mes"},{"@type":"Offer","price":"1.99","priceCurrency":"EUR","description":"Facturas ilimitadas, al mes, impuestos incluidos"},{"@type":"Offer","price":"20.30","priceCurrency":"EUR","description":"Facturas ilimitadas, al año, impuestos incluidos"}]}',
         shot=site_shot("grgestor", "GR Gestor")),
     dict(
         slug="grgestorplus", name="GR Gestor Plus", color="var(--c-grgestorplus)",
         kicker="La app del negocio, su equipo y su gestoría, pronto en Google Play",
         one="Presupuestos que el cliente acepta desde un enlace, facturas con su QR tributario, fichajes que nadie puede retocar, nóminas firmadas desde el móvil y las cartas de Hacienda explicadas. Gratis con anuncios o por módulos: se paga solo lo que se usa.",
-        # sin enlace hasta que esté publicada en Google Play
-        url=None, link=None,
+        # hasta que esté en Google Play, sus demos en la web: GR Gestor Plus y GR Fichajes (la misma app, solo con los fichajes)
+        url="https://plus.grgestor.es/app/demo/administrador", link="Probar la demo",
+        url2="https://plus.grgestor.es/fichajes/demo/empleado", link2="Probar GR Fichajes",
         llm="La súper app de la familia GR Gestor para negocios (autónomos y empresas), sus empleados y su gestoría: "
             "presupuestos que el cliente acepta desde un enlace, facturas con su QR tributario, gastos con la foto del ticket, el trimestre, "
             "escáner y herramientas PDF, cartas de la Administración explicadas con su plazo, fichajes (también sin cobertura), cuadrante, "
@@ -126,7 +131,8 @@ PROJECTS = [
             "Precios con impuestos incluidos: gratis con anuncios (3 facturas al mes y hasta 3 personas); Cuentas 3,99 € al mes por negocio; "
             "Papeles 2,99 € al mes por negocio; Equipo 1,69 € por persona y mes (1,49 € de la 51 a la 200 y 1,29 € desde la 201); "
             "gestorías: 3,99 € por persona del despacho y, si incluyen a sus clientes, 4,99 € por cliente (3,99 € del 51 al 200 y 2,99 € desde el 201) "
-            "y Equipo para sus empleados. Al año, un 15 % menos. Privacidad: https://grgestor.es/plus-privacidad.html",
+            "y Equipo para sus empleados. Al año, un 15 % menos. Privacidad: https://grgestor.es/plus-privacidad.html. "
+            "Demo sin cuenta: https://plus.grgestor.es/app/demo/administrador; GR Fichajes (la misma app, solo con los fichajes): https://plus.grgestor.es/fichajes/demo/empleado",
         schema='{"@type":"SoftwareApplication","name":"GR Gestor Plus","applicationCategory":"BusinessApplication","operatingSystem":"Android, Web",'
                '"description":"La app de la familia GR Gestor para negocios, sus empleados y su gestoría: presupuestos, facturas con QR tributario, gastos, el trimestre, escáner y PDF, cartas de la Administración explicadas, fichajes, cuadrante, ausencias y nóminas firmadas. Gratis con anuncios o por módulos.",'
                '"author":{"@id":"' + ORG + '"},"offers":['
@@ -532,7 +538,7 @@ def llms():
              f"Contacto: {PERSON['email']} · {PERSON['phone']} · {PERSON['address'][0]}, {PERSON['address'][1]}", "", "## Proyectos", ""]
     for p in PROJECTS:
         site = p["url"] if (p.get("url") or "").startswith("http") else "https://gebrey.es/#web"
-        app = f" App: {p['url2']}" if p.get("url2") else ""
+        app = (f" Demo sin cuenta: {p['url2']}" if p["link2"].startswith("Probar") else f" App: {p['url2']}") if p.get("url2") else ""
         kicker = p["kicker"][0].lower() + p["kicker"][1:]   # solo la inicial: VERI*FACTU y SaaS se quedan como son
         lines.append(f"- {p['name']} ({kicker}): {p.get('llm') or (p['one'] + ' Sitio: ' + site + app)}")
     lines += ["", "## Páginas", "", "- [Inicio](https://gebrey.es/)", "- [Aviso legal y privacidad](https://gebrey.es/legal.html)"]
