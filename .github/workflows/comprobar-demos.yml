@@ -32,6 +32,8 @@ jobs:
           pagina "GR Gestor" https://grgestor.es/app/demo/autonomo
           pagina "GR Gestor Despacho" https://grgestor.es/despacho/demo/gestoria
           interruptor "GR Gestor (interruptor)" https://api.grgestor.es/api/demo
+          pagina "GR Gestor (demo.grgestor.es)" https://demo.grgestor.es/app/demo/autonomo
+          interruptor "demo.grgestor.es" https://demo.grgestor.es/api/demo
           pagina "GR Gestor Plus" https://plus.grgestor.es/app/demo/administrador
           pagina "GR Fichajes" https://plus.grgestor.es/fichajes/demo/empleado
           interruptor "GR Gestor Plus (interruptor)" https://plus.grgestor.es/api/demo
