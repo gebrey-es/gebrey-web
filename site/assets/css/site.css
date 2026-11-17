@@ -23,7 +23,7 @@
   --c-marnin: #4fa8ff;          /* Marnin: azul atlántico */
   --c-apps: #ff86c8;            /* Apps: rosa */
   --c-web: #b9a7ff;             /* Web y hosting: lila */
-  --c-jornada: #ff8fb8;         /* Jornada (AppEquipo + GR Gestor): rosa */
+  --c-jornada: #ff8fb8;         /* GR Fichajes (el registro de jornada): rosa */
   --c: var(--accent);
   --on-c: #1a0d0a;
 
