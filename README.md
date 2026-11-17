@@ -1,6 +1,6 @@
 # gebrey.es
 
-Web de GEBREY: una sola página con los productos (AppEquipo, el portal del empleado; Jornada, el registro de jornada de AppEquipo conectado con GR Gestor; GR Gestor; Citras y ViaConextaHub), un cliente (Marnin: su web la hicimos nosotros y su portal del empleado funciona con AppEquipo; no es un producto de GEBREY) y el servicio de Web y hosting, más el aviso legal, la página de gracias y `presupuesto.php` (el formulario de presupuesto, una frase con huecos, que manda el correo a hola@gebrey.es desde el propio hosting). El nombre del titular solo aparece en el aviso legal.
+Web de GEBREY: una sola página con los productos (AppEquipo, el portal del empleado; Jornada, el registro de jornada de AppEquipo conectado con GR Gestor; GR Gestor; GR Gestor Plus; Citras; ViaConextaHub, y las Apps para Android), un cliente (Marnin: su web la hicimos nosotros y su portal del empleado funciona con AppEquipo; no es un producto de GEBREY) y el servicio de Web y hosting, más el aviso legal, la página de gracias y `presupuesto.php` (el formulario de presupuesto, una frase con huecos, que manda el correo a hola@gebrey.es desde el propio hosting). Cada producto con demo sin cuenta la enlaza («Probar la demo»). El nombre del titular solo aparece en el aviso legal.
 
 ## Estructura
 
@@ -8,6 +8,8 @@ Web de GEBREY: una sola página con los productos (AppEquipo, el portal del empl
 - `build.py` — genera la página desde los datos de los proyectos (`PROJECTS`, cada uno con su tipo en `kind`: producto, cliente o servicio; el servicio va el último) y los textos de contacto (`PERSON`). Escribe `dist/` (para el servidor) y `preview/` (vista previa). Los vídeos de AppEquipo no se copian: se sirven desde `https://mbtenerife.es/video/` (`VIDEO_APPEQUIPO`).
 - `record.js` — graba con Playwright un recorrido por cada web (portátil 1200×750 y móvil 640×1386) y lo guarda en `src/assets/video/`; vuelve a ejecutarlo cuando cambie una web (`node record.js marnin` para una sola). Los vídeos de AppEquipo son los del portal y se sirven desde mbtenerife.es.
 - `record-citras.js` — graba la demo de Citras (mbtenerife.es/ambulancias) usándola en tiempo real, en portátil y móvil.
+- `record-plus.js` — graba GR Gestor Plus en su demo (la gestoría en el portátil y la empresa en el móvil) y lo deja en `src/assets/video/grgestorplus-*`; hace falta la demo en marcha (`pnpm demo` en su repositorio): `node record-plus.js http://localhost:8787`.
+- `record-apps.js` — vídeos móviles 9:16 de la escena Apps: graba la interfaz real de Sorteo en Regla (hace falta la carpeta `assets/` de su proyecto Android) y monta el pase de pantallas de Repertorios Oposiciones con las capturas de su ficha de Google Play.
 - `og.js` — regenera `src/assets/img/og.png` (la imagen al compartir) con Playwright; ejecútalo si cambia la lista de proyectos.
 - `site/` — copia de `dist/` que se publica. **Es lo que sube el workflow.**
 - `shot.js` — capturas con Playwright para revisar escritorio, móvil y tema claro.

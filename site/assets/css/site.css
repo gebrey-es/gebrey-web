@@ -19,7 +19,9 @@
   --c-appequipo: #c6e85a;       /* AppEquipo: lima */
   --c-citras: #3fc1b0;          /* Citras: verde atlántico */
   --c-grgestor: #e8ac4a;        /* GR Gestor: ámbar malvasía */
+  --c-grgestorplus: #f2d24b;    /* GR Gestor Plus: el oro del «Plus» */
   --c-marnin: #4fa8ff;          /* Marnin: azul atlántico */
+  --c-apps: #ff86c8;            /* Apps: rosa */
   --c-web: #b9a7ff;             /* Web y hosting: lila */
   --c-jornada: #ff8fb8;         /* Jornada (AppEquipo + GR Gestor): rosa */
   --c: var(--accent);
@@ -57,7 +59,9 @@
     --c-appequipo: #4d7f0a;
     --c-citras: #137e71;
     --c-grgestor: #935c00;
+    --c-grgestorplus: #786000;
     --c-marnin: #1b6fd0;
+    --c-apps: #c4177a;
     --c-web: #6a52d8;
     --c-jornada: #c2316b;
     --on-c: #fff8ee;
@@ -77,7 +81,9 @@
   --c-appequipo: #4d7f0a;
   --c-citras: #137e71;
   --c-grgestor: #935c00;
+  --c-grgestorplus: #786000;
   --c-marnin: #1b6fd0;
+  --c-apps: #c4177a;
   --c-web: #6a52d8;
   --c-jornada: #c2316b;
   --on-c: #fff8ee;
@@ -348,6 +354,12 @@ html.motion .index-g { opacity: 0; animation: fade 0.8s var(--ease-out) forwards
   opacity: var(--sp); transform: translateY(calc((1 - var(--sp)) * 40%));
 }
 .shot.video .phone video { width: 100%; height: 100%; object-fit: cover; }
+/* Apps: un móvil 9:16 por app, uno al lado del otro, con su nombre encima */
+.shot.video.apps { display: flex; justify-content: center; align-items: flex-start; gap: 8%; padding: 5% 8% 0; }
+.shot.video.apps .app { width: 33%; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: .6em; }
+.shot.video.apps .app + .app { margin-top: 7%; }
+.shot.video.apps .cap { font-size: .68em; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--c); white-space: nowrap; opacity: var(--sp); transform: translateY(calc((1 - var(--sp)) * 1em)); }
+.shot.video.apps .phone { position: static; width: 100%; aspect-ratio: 9 / 16; border-radius: 1.7em; transform: translateY(calc((1 - var(--sp)) * 18%)); }
 
 /* Jornada: del fichaje en AppEquipo a las variables del mes en GR Gestor */
 .shot.flujo { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: center; gap: 6%; }

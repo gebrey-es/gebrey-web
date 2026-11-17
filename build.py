@@ -24,8 +24,8 @@ MOON = '<svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" 
 
 # El nombre solo aparece en el aviso legal (lo exige la LSSI); la portada es un escaparate de proyectos.
 PERSON = dict(
-    name="Francisco Gebrie Vicente", email="hola@gebrey.es", phone="+34 822 276 190", phone_tel="+34822276190",
-    address=["Avda. Tres de Mayo 30, Edificio Ahlers, 1.ª planta", "38005 Santa Cruz de Tenerife"],
+    name="Francisco Gebrié Vicente", email="hola@gebrey.es", phone="+34 822 276 190", phone_tel="+34822276190",
+    address=["Avda. Tres de Mayo 30, Edificio Adhlers, 1.ª planta", "38005 Santa Cruz de Tenerife"],
 )
 ORG = "https://gebrey.es/#org"
 INDEXNOW_KEY = "bf8285b213157c518309b0364a3946ae"
@@ -50,6 +50,27 @@ def video_shot(lap, mob, lap_label, mob_label, local=True):
                 f' data-src="{base}"{vv} aria-label="{html.escape(label, quote=True)}"></video>')
     return (f'<div class="shot video">\n  {tag("lap", lap, lap_label, 0)}\n'
             f'  <div class="phone pc" style="--i:3">{tag("mob", mob, mob_label, 3)}</div>\n</div>')
+
+PLAY_SORTEO = "https://play.google.com/store/apps/details?id=es.gebrey.sorteoenregla"
+PLAY_REPERTORIOS = "https://play.google.com/store/apps/details?id=es.gebrey.repertorioposicion"
+
+def links(p):
+    """La fila de botones de una escena; vacía si el proyecto aún no tiene enlace (apps sin publicar)."""
+    if not p.get("url"):
+        return ""
+    a = f'<a class="s-link" href="{p["url"]}"{" rel=\"noopener\"" if p["url"].startswith("http") else ""}{" data-quote" if p.get("quote") else ""}>{p["link"]}</a>'
+    b = f'<a class="s-link s-link-2" href="{p["url2"]}" rel="noopener">{p["link2"]}</a>' if p.get("url2") else ""
+    return f'<div class="s-links">{a}{b}</div>'
+
+def apps_shot(apps):
+    """Pantalla con un móvil 9:16 por app (vídeos de record-apps.js en src/assets/video/<slug>-movil)."""
+    cols = []
+    for i, (slug, name, label) in enumerate(apps):
+        base = f"assets/video/{slug}-movil"
+        cols.append(f'<div class="app pc" style="--i:{1 + i * 2}"><span class="cap">{html.escape(name)}</span>'
+                    f'<div class="phone"><video class="mob" muted playsinline loop preload="none" disablepictureinpicture disableremoteplayback'
+                    f' data-src="{base}" data-v="{v(base + ".mp4")}" aria-label="{html.escape(label, quote=True)}"></video></div></div>')
+    return '<div class="shot video apps">\n  ' + '\n  '.join(cols) + '\n</div>'
 
 def site_shot(slug, name):
     """Recorrido grabado por la web del proyecto (record.js): portátil y móvil."""
@@ -93,6 +114,7 @@ PROJECTS = [
         kicker="Portal del empleado y control horario",
         one="Fichajes que nadie puede retocar, cuadrantes de turnos, nóminas firmadas desde el móvil y partes diarios, con el nombre y el logo de cada empresa. Para equipos de limpieza, hoteles, obras, seguridad o socorrismo.",
         url="https://mbtenerife.es", link="Entrar en mbtenerife.es",
+        url2="https://mbtenerife.es/demostracion/", link2="Probar la demo",
         schema='{"@type":"SoftwareApplication","name":"AppEquipo","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://mbtenerife.es","description":"Portal del empleado y control horario para equipos de campo: registro de jornada inalterable, cuadrantes, nóminas firmadas y partes.","author":{"@type":"Organization","name":"MBTenerife","url":"https://mbtenerife.es","parentOrganization":{"@id":"' + ORG + '"}},"offers":{"@type":"Offer","price":"3.50","priceCurrency":"EUR","description":"Desde 3,50 € por persona, según el volumen de la empresa"}}',
         # los vídeos reales del portal, servidos desde mbtenerife.es
         shot=video_shot(f"{VIDEO_APPEQUIPO}/portatil", f"{VIDEO_APPEQUIPO}/movil",
@@ -101,23 +123,54 @@ PROJECTS = [
     dict(
         slug="jornada", name="Jornada", color="var(--c-jornada)", kind="producto",
         kicker="AppEquipo + GR Gestor: del fichaje a la nómina",
-        one="El equipo ficha en AppEquipo y la gestoría recibe las horas de cada mes en GR Gestor, listas para las nóminas. 1,50 € por empleado y mes, o incluido por la gestoría con GR Gestor Despacho + Jornada.",
+        one="El equipo ficha en AppEquipo y la gestoría recibe las horas de cada mes en GR Gestor, listas para las nóminas. Desde 1,25 € por empleado y mes (1,25 € hasta el 50, 1,10 € del 51 al 200 y 0,95 € desde el 201), impuestos aparte, o incluido por la gestoría con GR Gestor Despacho + Jornada.",
         url="https://grgestor.es/#jornada", link="Ver el precio en grgestor.es",
         url2="https://mbtenerife.es/registro-de-jornada/#con-tu-gestoria", link2="Cómo es el registro",
-        schema='{"@type":"SoftwareApplication","name":"Registro de jornada de AppEquipo con GR Gestor","applicationCategory":"BusinessApplication","operatingSystem":"Web, Android","url":"https://grgestor.es/#jornada","description":"El registro de jornada de AppEquipo conectado con GR Gestor Despacho: el equipo ficha desde el móvil y la gestoría recibe las horas de cada mes para las nóminas.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"1.50","priceCurrency":"EUR","description":"Por empleado y mes, impuestos aparte"},{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Incluido por la gestoría con GR Gestor Despacho + Jornada"}]}',
+        schema='{"@type":"SoftwareApplication","name":"Registro de jornada de AppEquipo con GR Gestor","applicationCategory":"BusinessApplication","operatingSystem":"Web, Android","url":"https://grgestor.es/#jornada","description":"El registro de jornada de AppEquipo conectado con GR Gestor Despacho: el equipo ficha desde el móvil y la gestoría recibe las horas de cada mes para las nóminas.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"1.25","priceCurrency":"EUR","description":"Por empleado y mes, impuestos aparte: 1,25 € hasta el 50, 1,10 € del 51 al 200 y 0,95 € desde el 201"},{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Incluido por la gestoría con GR Gestor Despacho + Jornada"}]}',
         shot=SHOT_JORNADA),
     dict(
         slug="grgestor", name="GR Gestor", color="var(--c-grgestor)", kind="producto",
         kicker="Facturación con VERI*FACTU para autónomos y gestorías",
         one="Facturas lacradas con VERI*FACTU que se escriben en una frase desde el móvil, lo que es de Hacienda apartado en su sobre y la gestoría viéndolo todo al momento, también las horas del equipo.",
         url="https://grgestor.es", link="Entrar en grgestor.es",
-        schema='{"@type":"SoftwareApplication","name":"GR Gestor","applicationCategory":"FinanceApplication","operatingSystem":"Android, Web","url":"https://grgestor.es","description":"App de facturación con VERI*FACTU para autónomos y micropymes: facturas escritas en una frase, el IVA y el IRPF apartados en sobres y conexión con su gestoría, que trabaja con GR Gestor Despacho.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis hasta 3 facturas al mes"},{"@type":"Offer","price":"2.99","priceCurrency":"EUR","description":"Facturas ilimitadas, al mes, IVA incluido"}]}',
+        url2="https://grgestor.es/app/demo/autonomo", link2="Probar la demo",
+        schema='{"@type":"SoftwareApplication","name":"GR Gestor","applicationCategory":"FinanceApplication","operatingSystem":"Android, Web","url":"https://grgestor.es","description":"App de facturación con VERI*FACTU para autónomos y micropymes: facturas escritas en una frase, el IVA y el IRPF apartados en sobres y conexión con su gestoría, que trabaja con GR Gestor Despacho.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis hasta 3 facturas al mes"},{"@type":"Offer","price":"1.99","priceCurrency":"EUR","description":"Facturas ilimitadas, al mes, impuestos incluidos"},{"@type":"Offer","price":"20.30","priceCurrency":"EUR","description":"Facturas ilimitadas, al año, impuestos incluidos"}]}',
         shot=site_shot("grgestor", "GR Gestor")),
+    dict(
+        slug="grgestorplus", name="GR Gestor Plus", color="var(--c-grgestorplus)", kind="producto",
+        kicker="La app del negocio, su equipo y su gestoría, pronto en Google Play",
+        one="Presupuestos que el cliente acepta desde un enlace, facturas con su QR tributario, fichajes que nadie puede retocar, nóminas firmadas desde el móvil y las cartas de Hacienda explicadas. Gratis con anuncios o por módulos: se paga solo lo que se usa.",
+        # hasta que esté en Google Play, sus demos en la web: GR Gestor Plus y GR Fichajes (la misma app, solo con los fichajes)
+        url="https://plus.grgestor.es/app/demo/administrador", link="Probar la demo",
+        url2="https://plus.grgestor.es/fichajes/demo/empleado", link2="Probar GR Fichajes",
+        llm="La súper app de la familia GR Gestor para negocios (autónomos y empresas), sus empleados y su gestoría: "
+            "presupuestos que el cliente acepta desde un enlace, facturas con su QR tributario, gastos con la foto del ticket, el trimestre, "
+            "escáner y herramientas PDF, cartas de la Administración explicadas con su plazo, fichajes (también sin cobertura), cuadrante, "
+            "ausencias, nóminas que se firman y el registro para la Inspección. Lo que lee con IA (tickets, cartas, facturas dictadas) lo lee con la clave "
+            "de IA de cada negocio o gestoría (por defecto, Google Gemini, gratis desde Google AI Studio). Android y web; pendiente de publicar en Google Play. "
+            "Precios con impuestos incluidos: gratis con anuncios (3 facturas al mes y hasta 3 personas); Cuentas 3,99 € al mes por negocio; "
+            "Papeles 2,99 € al mes por negocio; Equipo 1,69 € por persona y mes (1,49 € de la 51 a la 200 y 1,29 € desde la 201); "
+            "gestorías: 3,99 € por persona del despacho y, si incluyen a sus clientes, 4,99 € por cliente (3,99 € del 51 al 200 y 2,99 € desde el 201) "
+            "y Equipo para sus empleados. Al año, un 15 % menos. Privacidad: https://grgestor.es/plus-privacidad.html. "
+            "Demo sin cuenta: https://plus.grgestor.es/app/demo/administrador; GR Fichajes (la misma app, solo con los fichajes): https://plus.grgestor.es/fichajes/demo/empleado",
+        schema='{"@type":"SoftwareApplication","name":"GR Gestor Plus","applicationCategory":"BusinessApplication","operatingSystem":"Android, Web",'
+               '"description":"La app de la familia GR Gestor para negocios, sus empleados y su gestoría: presupuestos, facturas con QR tributario, gastos, el trimestre, escáner y PDF, cartas de la Administración explicadas, fichajes, cuadrante, ausencias y nóminas firmadas. Gratis con anuncios o por módulos.",'
+               '"author":{"@id":"' + ORG + '"},"offers":['
+               '{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis con anuncios: 3 facturas al mes y hasta 3 personas"},'
+               '{"@type":"Offer","price":"3.99","priceCurrency":"EUR","description":"Cuentas: presupuestos, facturas con QR tributario, gastos y trimestre; al mes por negocio, impuestos incluidos"},'
+               '{"@type":"Offer","price":"2.99","priceCurrency":"EUR","description":"Papeles: escáner, PDF, cartas explicadas y trámites; al mes por negocio, impuestos incluidos"},'
+               '{"@type":"Offer","price":"1.69","priceCurrency":"EUR","description":"Equipo: fichajes, cuadrante, ausencias y documentos firmados; por persona y mes, impuestos incluidos (1,49 € de la 51 a la 200 y 1,29 € desde la 201)"},'
+               '{"@type":"Offer","price":"3.99","priceCurrency":"EUR","description":"Gestorías: por persona del despacho y mes, impuestos incluidos; clientes incluidos desde 2,99 €"}]}',
+        # la app de verdad, grabada en su demo (record-plus.js): la gestoría en el portátil y la empresa en el móvil
+        shot=video_shot("assets/video/grgestorplus-portatil", "assets/video/grgestorplus-movil",
+                        "Vídeo de GR Gestor Plus en el portátil: la gestoría repasa su cartera, entra en un cliente, mira su cuadrante y sus cuentas",
+                        "Vídeo de GR Gestor Plus en el móvil: la empresa repasa lo pendiente, sus cuentas, sus papeles y quién trabaja hoy")),
     dict(
         slug="citras", name="Citras", color="var(--c-citras)", kind="producto",
         kicker="Coordinación de flotas de vehículos",
         one="Cada vehículo, cada servicio y cada aviso en una sola pantalla: rutas que se rehacen solas, avisos urgentes y un enlace para seguir cada vehículo en el mapa.",
         url="https://mbtenerife.es/citras/", link="Conocer Citras",
+        url2="https://mbtenerife.es/ambulancias/", link2="Probar la demo",
         schema='{"@type":"SoftwareApplication","name":"Citras","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://mbtenerife.es/citras/","description":"Citras coordina flotas de vehículos: rutas que se hacen y se rehacen solas, avisos urgentes y un enlace para seguir cada vehículo en el mapa. Un producto de MBTenerife.","author":{"@type":"Organization","name":"MBTenerife","url":"https://mbtenerife.es","parentOrganization":{"@id":"' + ORG + '"}}}',
         # la demo de Citras usada de verdad (record-citras.js), no un recorrido por su web
         shot=video_shot("assets/video/citras-portatil", "assets/video/citras-movil",
@@ -128,8 +181,22 @@ PROJECTS = [
         kicker="Plataforma para agencias de viajes",
         one="Un solo buscador para que cada agencia reserve con todos sus mayoristas, usando sus propias claves.",
         url="https://viaconextahub.es", link="Entrar en viaconextahub.es",
+        url2="https://app.conexta.es/demo", link2="Probar la demo",
         schema='{"@type":"SoftwareApplication","name":"ViaConextaHub","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://viaconextahub.es","description":"Plataforma SaaS que conecta a las agencias de viajes con sus mayoristas usando las claves de cada agencia.","author":{"@id":"' + ORG + '"},"offers":{"@type":"Offer","price":"25","priceCurrency":"EUR","description":"Suscripción mensual, más impuestos"}}',
         shot=site_shot("viaconextahub", "ViaConextaHub")),
+    dict(
+        slug="apps", name="Apps", color="var(--c-apps)", kind="producto",
+        kicker="Apps para Android, pronto en Google Play",
+        one="Sorteo en Regla: sorteos con bases legales y acta, por lista o con un QR al que la gente se apunta desde el móvil. Repertorios Oposiciones: las preguntas de los repertorios oficiales, para practicar. Gratis, con anuncios.",
+        # sin enlaces hasta que salgan de la prueba cerrada: PLAY_SORTEO y PLAY_REPERTORIOS serán sus fichas (url/link y url2/link2)
+        url=None, link=None,
+        llm=f"Sorteo en Regla (sorteos con bases legales y acta, por lista o con código QR; Android, gratis con anuncios; en pruebas, pendiente de publicar en Google Play): Privacidad {SITE}/sorteo-en-regla-privacidad.html. "
+            f"Repertorios Oposiciones (practicar con las preguntas de los repertorios oficiales de oposiciones; Android, gratis con anuncios y suscripción opcional sin anuncios; en pruebas, pendiente de publicar en Google Play): Privacidad {SITE}/repertorios-scs-privacidad.html",
+        schema='{"@type":"SoftwareApplication","name":"Sorteo en Regla","applicationCategory":"UtilitiesApplication","operatingSystem":"Android","description":"App para hacer sorteos con bases legales y acta: pegando una lista de nombres o con un código QR al que la gente se apunta desde su móvil. Gratuita, con anuncios.","author":{"@id":"' + ORG + '"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}},'
+               '{"@type":"SoftwareApplication","name":"Repertorios Oposiciones","applicationCategory":"EducationalApplication","operatingSystem":"Android","description":"App para practicar con las preguntas de los repertorios oficiales de oposiciones, con la explicación de cada respuesta. Gratuita con anuncios; una suscripción mensual opcional los quita.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR"},{"@type":"Offer","price":"2.99","priceCurrency":"EUR","description":"Suscripción mensual sin anuncios"}]}',
+        # dos móviles: la interfaz real de Sorteo en Regla haciendo un sorteo y el pase de pantallas de Repertorios (record-apps.js)
+        shot=apps_shot([("sorteoenregla", "Sorteo en Regla", "Vídeo de Sorteo en Regla: la lista de participantes, el sorteo con los nombres girando, el ganador con confeti y el acta"),
+                        ("repertorios", "Repertorios Oposiciones", "Pantallas de Repertorios Oposiciones: inicio, temario con la explicación de cada tema, test y repaso")])),
     dict(
         slug="marnin", name="Marnin", color="var(--c-marnin)", kind="cliente",
         kicker="Su web, y su portal del empleado con AppEquipo",
@@ -242,11 +309,11 @@ def index_page(preview=False):
         grupos[-1][1].append(p)
     index, n = "", 0
     for kind, ps in grupos:
-        links = ""
+        enlaces = ""
         for p in ps:
-            links += f'<a href="#{p["slug"]}" style="--dot:{p["color"]};--i:{n}">{p["name"]}</a>'
+            enlaces += f'<a href="#{p["slug"]}" style="--dot:{p["color"]};--i:{n}">{p["name"]}</a>'
             n += 1
-        index += f'<span class="index-grupo"><span class="index-g" style="--i:{n - len(ps)}">{KINDS[kind]}s</span>{links}</span>'
+        index += f'<span class="index-grupo"><span class="index-g" style="--i:{n - len(ps)}">{KINDS[kind]}s</span>{enlaces}</span>'
     rail = "".join(f'<a href="#{p["slug"]}" style="--dot:{p["color"]}" data-name="{p["name"]}" aria-label="{p["name"]}"></a>' for p in PROJECTS)
     scenes = ""
     for p in PROJECTS:
@@ -258,7 +325,7 @@ def index_page(preview=False):
     <div class="s-row">
       <div class="s-text">
         <p class="s-one">{p["one"]}</p>
-        <div class="s-links"><a class="s-link" href="{p["url"]}"{' rel="noopener"' if p["url"].startswith("http") else ''}{' data-quote' if p.get("quote") else ''}>{p["link"]}</a>{f'<a class="s-link s-link-2" href="{p["url2"]}" rel="noopener">{p["link2"]}</a>' if p.get("url2") else ''}</div>
+        {links(p)}
       </div>
       <div class="s-shot">{p["shot"]}</div>
     </div>
@@ -341,6 +408,109 @@ def legal_page():
     out += '</body></html>'
     return out
 
+# ---------- política de privacidad de la app Sorteo en Regla ----------
+# La enlazan la ficha de Google Play y el mensaje de consentimiento de AdMob; no sale en la portada.
+SORTEO_URL = SITE + "/sorteo-en-regla-privacidad.html"
+
+def sorteo_privacy_page():
+    out = head("Política de privacidad — Sorteo en Regla", "Política de privacidad de la app Sorteo en Regla para Android.", SORTEO_URL, "assets/css/site.css")
+    out += header("index.html")
+    out += f"""
+<main id="main" class="wrap"><div class="legal">
+  <h1>Política de privacidad de Sorteo en Regla</h1>
+  <p>Última actualización: 11 de noviembre de 2026.</p>
+  <p>Sorteo en Regla es una app para Android (paquete es.gebrey.sorteoenregla) que sirve para hacer sorteos con bases legales y acta. Es gratuita y muestra anuncios. Esta página explica qué datos trata y para qué.</p>
+  <h2>Responsable</h2>
+  <p>{PERSON["name"]}. Domicilio: {PERSON["address"][0]}, {PERSON["address"][1]}. Correo: {PERSON["email"]}.</p>
+  <h2>Qué datos se tratan</h2>
+  <p><strong>Sorteos con lista pegada.</strong> Los nombres que el organizador escribe o pega se quedan en su propio dispositivo: no se envían a ningún servidor.</p>
+  <p><strong>Sorteos con código QR.</strong> Para que la gente pueda apuntarse desde su móvil, estos sorteos se guardan en la nube. Se guardan el título, el premio, el nombre del organizador y las bases que este escribe; el nombre que indica cada participante al apuntarse y, solo si el organizador lo pide, un dato de contacto; la fecha en que se apunta y el resultado del sorteo.</p>
+  <p><strong>Identificador anónimo.</strong> La app no pide registro, correo ni contraseña. Al usar los sorteos con QR se crea un identificador anónimo ligado a la instalación, que sirve para que cada persona se apunte una sola vez y para que solo el organizador pueda gestionar su sorteo.</p>
+  <p><strong>Anuncios.</strong> La app muestra anuncios de Google AdMob. Para ello Google puede tratar el identificador de publicidad del dispositivo, la dirección IP, datos del dispositivo y datos de uso de los anuncios.</p>
+  <p>La app no accede a tus contactos, a tu ubicación ni a tus archivos. El lector de QR usa la cámara solo en el momento de escanear y no guarda ni envía imágenes.</p>
+  <h2>Para qué y con qué base</h2>
+  <p>Los datos de los sorteos se usan únicamente para hacer el sorteo, mostrar a cada participante su resultado y que el organizador pueda entregar el premio. La base es la participación voluntaria en el sorteo. Los anuncios personalizados solo se muestran con tu consentimiento, que se pide al abrir la app en el Espacio Económico Europeo, el Reino Unido y Suiza y que puedes cambiar cuando quieras desde las opciones de privacidad de la app.</p>
+  <h2>Quién ve los datos</h2>
+  <p>La lista de participantes de un sorteo solo la ve su organizador. Cada participante ve su propia participación y el resultado. El organizador decide por su cuenta qué hace con los datos de quienes se apuntan a su sorteo y responde de ese uso conforme a las bases que publica.</p>
+  <p>Los datos se alojan en Google Firebase (Cloud Firestore y Firebase Authentication), con la base de datos situada en la Unión Europea. Los anuncios los sirve Google AdMob. Ambos servicios son de Google Ireland Limited, que actúa como proveedor y puede tratar datos fuera del Espacio Económico Europeo con las garantías de su <a href="https://policies.google.com/privacy" rel="noopener">política de privacidad</a>. No se ceden datos a nadie más, salvo obligación legal.</p>
+  <h2>Cuánto tiempo se guardan</h2>
+  <p>Mientras el sorteo sigue abierto, cada participante puede borrar su participación desde la app. Los sorteos y sus participaciones se conservan para que el resultado y el acta se puedan consultar, hasta que se pida su eliminación.</p>
+  <h2>Cómo pedir que se borren tus datos</h2>
+  <p>Escribe a {PERSON["email"]} indicando el código del sorteo (seis caracteres) y el nombre con el que te apuntaste, o que eres su organizador. Los datos se eliminan en un plazo máximo de 30 días.</p>
+  <h2>Tus derechos</h2>
+  <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a {PERSON["email"]}. También puedes reclamar ante la Agencia Española de Protección de Datos.</p>
+  <h2>Menores</h2>
+  <p>La app no está dirigida a menores de 14 años.</p>
+  <h2>Cambios</h2>
+  <p>Si esta política cambia, la nueva versión se publicará en esta misma página con su fecha.</p>
+</div></main>
+"""
+    out += scripts("")
+    out += '</body></html>'
+    return out
+
+# ---------- política de privacidad de la app Repertorios Oposiciones ----------
+# La enlaza la ficha de Google Play; no sale en la portada.
+REPERTORIOS_URL = SITE + "/repertorios-scs-privacidad.html"
+
+def repertorios_privacy_page():
+    out = head("Política de privacidad — Repertorios Oposiciones", "Política de privacidad de la app Repertorios Oposiciones para Android.", REPERTORIOS_URL, "assets/css/site.css")
+    out += header("index.html")
+    out += f"""
+<main id="main" class="wrap"><div class="legal">
+  <h1>Política de privacidad de Repertorios Oposiciones</h1>
+  <p>Última actualización: 12 de noviembre de 2026.</p>
+  <p>Repertorios Oposiciones es una app para Android (paquete es.gebrey.repertorioposicion) para practicar con las preguntas de los repertorios oficiales publicados por el Servicio Canario de la Salud. Es gratuita y muestra anuncios; una suscripción mensual opcional los quita. No es una app oficial: no pertenece al Servicio Canario de la Salud ni al Gobierno de Canarias, ni los representa.</p>
+  <h2>Responsable</h2>
+  <p>{PERSON["name"]}. Domicilio: {PERSON["address"][0]}, {PERSON["address"][1]}. Correo: {PERSON["email"]}.</p>
+  <h2>Qué datos se tratan</h2>
+  <p><strong>Progreso de estudio.</strong> Las preguntas que aciertas y fallas, y la categoría que eliges, se guardan únicamente en tu dispositivo. No se envían a ningún servidor.</p>
+  <p><strong>Anuncios.</strong> La app muestra anuncios de Google AdMob. Para ello Google puede tratar el identificador de publicidad del dispositivo, la dirección IP, datos del dispositivo y datos de uso de los anuncios.</p>
+  <p><strong>Suscripción.</strong> La suscripción que quita los anuncios se compra en Google Play. El pago lo gestiona Google; la app solo consulta a Google Play si la suscripción está activa y no recibe ni guarda tus datos de pago.</p>
+  <p>La app no pide registro, nombre, correo ni contraseña. No accede a tus contactos, a tu ubicación, a la cámara ni a tus archivos.</p>
+  <h2>Para qué y con qué base</h2>
+  <p>Los anuncios financian la app. Los anuncios personalizados solo se muestran con tu consentimiento, que se pide al abrir la app en el Espacio Económico Europeo, el Reino Unido y Suiza y que puedes cambiar cuando quieras desde el apartado «Info» de la app, en «Opciones de privacidad de los anuncios». Con la suscripción activa la app no muestra anuncios.</p>
+  <h2>Quién recibe los datos</h2>
+  <p>Los anuncios los sirve Google AdMob y la suscripción la gestiona Google Play. Ambos servicios son de Google Ireland Limited, que actúa como proveedor y puede tratar datos fuera del Espacio Económico Europeo con las garantías de su <a href="https://policies.google.com/privacy" rel="noopener">política de privacidad</a>. No se ceden datos a nadie más, salvo obligación legal.</p>
+  <h2>Cuánto tiempo se guardan y cómo borrarlos</h2>
+  <p>El progreso se conserva en tu dispositivo hasta que lo borres. Puedes borrarlo desde el apartado «Info» de la app, borrando los datos de la app en los ajustes de Android o desinstalándola. El identificador de publicidad puedes restablecerlo o eliminarlo en los ajustes de Android.</p>
+  <h2>Cancelar la suscripción</h2>
+  <p>La suscripción se renueva cada mes hasta que la canceles. Puedes cancelarla cuando quieras en Google Play, en «Pagos y suscripciones».</p>
+  <h2>Tus derechos</h2>
+  <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a {PERSON["email"]}. También puedes reclamar ante la Agencia Española de Protección de Datos.</p>
+  <h2>Menores</h2>
+  <p>La app no está dirigida a menores de 14 años.</p>
+  <h2>Cambios</h2>
+  <p>Si esta política cambia, la nueva versión se publicará en esta misma página con su fecha.</p>
+</div></main>
+"""
+    out += scripts("")
+    out += '</body></html>'
+    return out
+
+# ---------- GR Gestor Plus: su política de privacidad está en grgestor.es ----------
+# Vive en grgestor.es, la web de la familia GR Gestor (se publica desde App-Factura). Esta dirección la usaron la
+# ficha de Google Play, el mensaje de consentimiento de AdMob y versiones anteriores de la app: el .htaccess la
+# redirige con un 301 (el navegador conserva #borrar-cuenta) y, si aun así se llega aquí, esta página lleva a la nueva.
+PLUS_URL = "https://grgestor.es/plus-privacidad.html"
+
+def plus_privacy_page():
+    extra = ('<meta name="robots" content="noindex">'
+             f'<script>location.replace("{PLUS_URL}"+location.hash)</script>'
+             f'<noscript><meta http-equiv="refresh" content="0; url={PLUS_URL}"></noscript>')
+    out = head("Política de privacidad — GR Gestor Plus", "La política de privacidad de GR Gestor Plus está en grgestor.es.", PLUS_URL, "assets/css/site.css", extra)
+    out += header("index.html")
+    out += f"""
+<main id="main" class="wrap"><div class="legal">
+  <h1>Política de privacidad de GR Gestor Plus</h1>
+  <p>Está en grgestor.es, la web de la familia GR Gestor: <a href="{PLUS_URL}">grgestor.es/plus-privacidad.html</a>.</p>
+  <p>Para borrar tu cuenta: <a href="{PLUS_URL}#borrar-cuenta">grgestor.es/plus-privacidad.html#borrar-cuenta</a>.</p>
+</div></main>
+"""
+    out += scripts("")
+    out += '</body></html>'
+    return out
+
 PHP = r"""<?php
 // Recibe el formulario de presupuesto de gebrey.es y lo manda por correo a hola@gebrey.es.
 // Responde JSON si lo pide el JS de la página; si no (sin JS), redirige a gracias.html.
@@ -412,17 +582,18 @@ def sitemap():
     return f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{body}</urlset>'
 
 def llms():
-    lines = ["# GEBREY", "", "> Software y webs a medida desde Tenerife: productos propios conectados entre sí (AppEquipo, GR Gestor, Citras y ViaConextaHub) y webs y portales para clientes.", "",
+    lines = ["# GEBREY", "", "> Software y webs a medida desde Tenerife: productos propios conectados entre sí (AppEquipo, GR Gestor, GR Gestor Plus, Citras y ViaConextaHub), apps para Android y webs y portales para clientes.", "",
              f"Contacto: {PERSON['email']} · {PERSON['phone']} · {PERSON['address'][0]}, {PERSON['address'][1]}"]
     for kind, titulo in (("producto", "Productos"), ("cliente", "Clientes"), ("servicio", "Servicios")):
         lines += ["", f"## {titulo}", ""]
         for p in (x for x in PROJECTS if x["kind"] == kind):
-            site = p["url"] if p["url"].startswith("http") else "https://gebrey.es/#web"
-            app = f" Más: {p['url2']}" if p.get("url2") else ""
+            site = p["url"] if (p.get("url") or "").startswith("http") else "https://gebrey.es/#web"
+            # el segundo enlace: su demo sin cuenta («Probar…») u otra página suya
+            app = (f" Demo sin cuenta: {p['url2']}" if p["link2"].startswith("Probar") else f" Más: {p['url2']}") if p.get("url2") else ""
             primera = p["kicker"].split()[0]
             # solo la inicial, y no en un nombre propio como AppEquipo: VERI*FACTU y GR Gestor se quedan como son
             kicker = p["kicker"] if any(c.isupper() for c in primera[1:]) else p["kicker"][0].lower() + p["kicker"][1:]
-            lines.append(f"- {p['name']} ({kicker}): {p['one']} Sitio: {site}{app}")
+            lines.append(f"- {p['name']} ({kicker}): {p.get('llm') or (p['one'] + ' Sitio: ' + site + app)}")
     lines += ["", "## Páginas", "", "- [Inicio](https://gebrey.es/)", "- [Aviso legal y privacidad](https://gebrey.es/legal.html)"]
     return "\n".join(lines) + "\n"
 
@@ -438,6 +609,8 @@ RedirectMatch 301 ^/proyectos/viaconextahub\\.html$ /#viaconextahub
 RedirectMatch 301 ^/proyectos/citras\\.html$ /#citras
 RedirectMatch 301 ^/proyectos/teidetravel\\.html$ /
 RedirectMatch 301 ^/proyectos/web-hosting\\.html$ /#web
+# la privacidad de GR Gestor Plus está en grgestor.es (el navegador conserva #borrar-cuenta)
+RedirectMatch 301 ^/grgestor-plus-privacidad\\.html$ https://grgestor.es/plus-privacidad.html
 # tipos y caché: el HTML se revalida siempre; CSS/JS/imágenes llevan ?v=huella y pueden cachearse mucho
 AddType text/plain .txt
 AddType video/mp4 .mp4
@@ -474,6 +647,9 @@ def build():
         shutil.copytree(os.path.join(SRC, "assets"), os.path.join(d, "assets"))
     write(os.path.join(DIST, "index.html"), index_page(False))
     write(os.path.join(DIST, "legal.html"), legal_page())
+    write(os.path.join(DIST, "sorteo-en-regla-privacidad.html"), sorteo_privacy_page())
+    write(os.path.join(DIST, "repertorios-scs-privacidad.html"), repertorios_privacy_page())
+    write(os.path.join(DIST, "grgestor-plus-privacidad.html"), plus_privacy_page())
     write(os.path.join(DIST, "robots.txt"), ROBOTS)
     write(os.path.join(DIST, "sitemap.xml"), sitemap())
     write(os.path.join(DIST, "llms.txt"), llms())
