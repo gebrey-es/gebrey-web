@@ -162,8 +162,8 @@ PROJECTS = [
         schema='{"@type":"SoftwareApplication","name":"Citras","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://mbtenerife.es/citras/","description":"Citras coordina flotas de vehículos: rutas que se hacen y se rehacen solas, avisos urgentes y un enlace para seguir cada vehículo en el mapa. Un producto de GebRey.","author":{"@id":"' + ORG + '"}}',
         # la demo de Citras usada de verdad (record-citras.js), no un recorrido por su web
         shot=video_shot("assets/video/citras-portatil", "assets/video/citras-movil",
-                        "Vídeo de la demo de Citras en el portátil: el centro de coordinación recibe un aviso urgente, activa la ambulancia que antes llega, replanifica las rutas y repasa la flota",
-                        "Vídeo de la demo de Citras en el móvil: la tripulación guarda la revisión de la ambulancia y el paciente ve llegar la suya")),
+                        "Vídeo de la demo de Citras en el portátil: el centro de coordinación recibe un aviso urgente, activa el vehículo libre que antes llega, rehace las rutas y repasa la flota",
+                        "Vídeo de la demo de Citras en el móvil: el equipo de un vehículo guarda su revisión diaria y quien espera ve llegar el vehículo en el mapa")),
     dict(
         slug="viaconextahub", name="ViaConextaHub", color="var(--c-vch)", kind="producto",
         kicker="Plataforma para agencias de viajes",
