@@ -125,7 +125,7 @@ PROJECTS = [
         kicker="AppEquipo + GR Gestor: del fichaje a la nómina",
         one="El equipo ficha en AppEquipo y la gestoría recibe las horas de cada mes en GR Gestor, listas para las nóminas. Desde 1,25 € por empleado y mes (1,25 € hasta el 50, 1,10 € del 51 al 200 y 0,95 € desde el 201), impuestos aparte, o incluido por la gestoría con GR Gestor Despacho + Jornada.",
         url="https://grgestor.es/#jornada", link="Ver el precio en grgestor.es",
-        url2="https://mbtenerife.es/registro-de-jornada/#con-tu-gestoria", link2="Cómo es el registro",
+        url2="https://fichajes.appequipo.es/demo/", link2="Probar la demo",
         schema='{"@type":"SoftwareApplication","name":"Registro de jornada de AppEquipo con GR Gestor","applicationCategory":"BusinessApplication","operatingSystem":"Web, Android","url":"https://grgestor.es/#jornada","description":"El registro de jornada de AppEquipo conectado con GR Gestor Despacho: el equipo ficha desde el móvil y la gestoría recibe las horas de cada mes para las nóminas.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"1.25","priceCurrency":"EUR","description":"Por empleado y mes, impuestos aparte: 1,25 € hasta el 50, 1,10 € del 51 al 200 y 0,95 € desde el 201"},{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Incluido por la gestoría con GR Gestor Despacho + Jornada"}]}',
         shot=SHOT_JORNADA),
     dict(
