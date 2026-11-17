@@ -37,8 +37,6 @@ def v(rel):
         return hashlib.sha256(f.read()).hexdigest()[:10]
 
 
-# Vídeos del portal AppEquipo, servidos desde la web de MBTenerife (sin copia aquí): .mp4 y .webm
-VIDEO_APPEQUIPO = "https://mbtenerife.es/video"
 
 def video_shot(lap, mob, lap_label, mob_label, local=True):
     """Pantalla con vídeo: el portátil a pantalla completa y el móvil asomando. `lap`/`mob` son la ruta
@@ -83,7 +81,7 @@ KINDS = {"producto": "Producto", "cliente": "Cliente", "servicio": "Servicio"}
 
 SHOT_JORNADA = """<div class="shot flujo" aria-hidden="true">
   <div class="pasos">
-    <div class="paso pc" style="--i:0"><span class="chip on">AppEquipo</span><span><b>08:02</b> Entrada, sellada en la cadena</span></div>
+    <div class="paso pc" style="--i:0"><span class="chip on">GR Fichajes</span><span><b>08:02</b> Entrada, sellada en la cadena</span></div>
     <span class="linea pc" style="--i:1"></span>
     <div class="paso pc" style="--i:2"><span class="chip">Cierre del mes</span><span><b>1.284</b> fichajes, ninguno retocado</span></div>
     <span class="linea pc" style="--i:3"></span>
@@ -110,25 +108,6 @@ SHOT_WEB = """<div class="shot web" aria-hidden="true">
 
 PROJECTS = [
     dict(
-        slug="appequipo", name="AppEquipo", color="var(--c-appequipo)", kind="producto",
-        kicker="Portal del empleado y control horario",
-        one="Fichajes que nadie puede retocar, cuadrantes de turnos, nóminas firmadas desde el móvil y partes diarios, con el nombre y el logo de cada empresa. Para equipos de limpieza, hoteles, obras, seguridad o socorrismo.",
-        url="https://mbtenerife.es", link="Entrar en mbtenerife.es",
-        url2="https://mbtenerife.es/demostracion/", link2="Probar la demo",
-        schema='{"@type":"SoftwareApplication","name":"AppEquipo","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://mbtenerife.es","description":"Portal del empleado y control horario para equipos de campo: registro de jornada inalterable, cuadrantes, nóminas firmadas y partes.","author":{"@type":"Organization","name":"MBTenerife","url":"https://mbtenerife.es","parentOrganization":{"@id":"' + ORG + '"}},"offers":{"@type":"Offer","price":"3.50","priceCurrency":"EUR","description":"Desde 3,50 € por persona, según el volumen de la empresa"}}',
-        # los vídeos reales del portal, servidos desde mbtenerife.es
-        shot=video_shot(f"{VIDEO_APPEQUIPO}/portatil", f"{VIDEO_APPEQUIPO}/movil",
-                        "Vídeo del portal en el portátil: coordinación aprueba unas vacaciones, revisa un fichaje, cubre un turno libre y abre el cuadrante del mes",
-                        "Vídeo del portal en el móvil: una socorrista ficha la entrada, mira sus turnos, firma la nómina, hace la revisión de apertura y da un parte", local=False)),
-    dict(
-        slug="jornada", name="Jornada", color="var(--c-jornada)", kind="producto",
-        kicker="AppEquipo + GR Gestor: del fichaje a la nómina",
-        one="El equipo ficha en AppEquipo y la gestoría recibe las horas de cada mes en GR Gestor, listas para las nóminas. Desde 1,25 € por empleado y mes (1,25 € hasta el 50, 1,10 € del 51 al 200 y 0,95 € desde el 201), impuestos aparte, o incluido por la gestoría con GR Gestor Despacho + Jornada.",
-        url="https://grgestor.es/#jornada", link="Ver el precio en grgestor.es",
-        url2="https://fichajes.appequipo.es/demo/", link2="Probar la demo",
-        schema='{"@type":"SoftwareApplication","name":"Registro de jornada de AppEquipo con GR Gestor","applicationCategory":"BusinessApplication","operatingSystem":"Web, Android","url":"https://grgestor.es/#jornada","description":"El registro de jornada de AppEquipo conectado con GR Gestor Despacho: el equipo ficha desde el móvil y la gestoría recibe las horas de cada mes para las nóminas.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"1.25","priceCurrency":"EUR","description":"Por empleado y mes, impuestos aparte: 1,25 € hasta el 50, 1,10 € del 51 al 200 y 0,95 € desde el 201"},{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Incluido por la gestoría con GR Gestor Despacho + Jornada"}]}',
-        shot=SHOT_JORNADA),
-    dict(
         slug="grgestor", name="GR Gestor", color="var(--c-grgestor)", kind="producto",
         kicker="Facturación con VERI*FACTU para autónomos y gestorías",
         one="Facturas lacradas con VERI*FACTU que se escriben en una frase desde el móvil, lo que es de Hacienda apartado en su sobre y la gestoría viéndolo todo al momento, también las horas del equipo.",
@@ -140,9 +119,9 @@ PROJECTS = [
         slug="grgestorplus", name="GR Gestor Plus", color="var(--c-grgestorplus)", kind="producto",
         kicker="La app del negocio, su equipo y su gestoría, pronto en Google Play",
         one="Presupuestos que el cliente acepta desde un enlace, facturas con su QR tributario, fichajes que nadie puede retocar, nóminas firmadas desde el móvil y las cartas de Hacienda explicadas. Gratis con anuncios o por módulos: se paga solo lo que se usa.",
-        # hasta que esté en Google Play, sus demos en la web: GR Gestor Plus y GR Fichajes (la misma app, solo con los fichajes)
+        # hasta que esté en Google Play, su demo en la web: como administrador y como empleado
         url="https://plus.grgestor.es/app/demo/administrador", link="Probar la demo",
-        url2="https://plus.grgestor.es/fichajes/demo/empleado", link2="Probar GR Fichajes",
+        url2="https://plus.grgestor.es/app/demo/empleado", link2="Probar como empleado",
         llm="La súper app de la familia GR Gestor para negocios (autónomos y empresas), sus empleados y su gestoría: "
             "presupuestos que el cliente acepta desde un enlace, facturas con su QR tributario, gastos con la foto del ticket, el trimestre, "
             "escáner y herramientas PDF, cartas de la Administración explicadas con su plazo, fichajes (también sin cobertura), cuadrante, "
@@ -152,7 +131,7 @@ PROJECTS = [
             "Papeles 2,99 € al mes por negocio; Equipo 1,69 € por persona y mes (1,49 € de la 51 a la 200 y 1,29 € desde la 201); "
             "gestorías: 3,99 € por persona del despacho y, si incluyen a sus clientes, 4,99 € por cliente (3,99 € del 51 al 200 y 2,99 € desde el 201) "
             "y Equipo para sus empleados. Al año, un 15 % menos. Privacidad: https://grgestor.es/plus-privacidad.html. "
-            "Demo sin cuenta: https://plus.grgestor.es/app/demo/administrador; GR Fichajes (la misma app, solo con los fichajes): https://plus.grgestor.es/fichajes/demo/empleado",
+            "Demo sin cuenta: https://plus.grgestor.es/app/demo/administrador; como empleado: https://plus.grgestor.es/app/demo/empleado",
         schema='{"@type":"SoftwareApplication","name":"GR Gestor Plus","applicationCategory":"BusinessApplication","operatingSystem":"Android, Web",'
                '"description":"La app de la familia GR Gestor para negocios, sus empleados y su gestoría: presupuestos, facturas con QR tributario, gastos, el trimestre, escáner y PDF, cartas de la Administración explicadas, fichajes, cuadrante, ausencias y nóminas firmadas. Gratis con anuncios o por módulos.",'
                '"author":{"@id":"' + ORG + '"},"offers":['
@@ -166,12 +145,21 @@ PROJECTS = [
                         "Vídeo de GR Gestor Plus en el portátil: la gestoría repasa su cartera, entra en un cliente, mira su cuadrante y sus cuentas",
                         "Vídeo de GR Gestor Plus en el móvil: la empresa repasa lo pendiente, sus cuentas, sus papeles y quién trabaja hoy")),
     dict(
+        slug="grfichajes", name="GR Fichajes", color="var(--c-jornada)", kind="producto",
+        kicker="El registro de jornada de la familia GR Gestor",
+        # Precios: GR Fichajes solo, un euro por debajo de la competencia (FICHAJES_SOLO en App-Factura); con GR Gestor, su módulo de jornada.
+        one="El equipo ficha desde el móvil (también sin cobertura), cada fichaje queda sellado y la gestoría recibe las horas de cada mes, listas para las nóminas. Solo, 4,25 € por empleado y mes (3,25 € desde la 91 y 2,25 € desde la 191), sin cuota de empresa; con GR Gestor, desde 1,25 €; o incluido por la gestoría con GR Gestor Despacho + Jornada. Impuestos aparte.",
+        url="https://grgestor.es/fichajes.html", link="Ver precios",
+        url2="https://fichajes.appequipo.es/demo/", link2="Probar la demo",
+        schema='{"@type":"SoftwareApplication","name":"GR Fichajes","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://fichajes.appequipo.es","description":"El registro de jornada de la familia GR Gestor: el equipo ficha desde el móvil, también sin cobertura, cada fichaje queda sellado y la gestoría recibe las horas de cada mes para las nóminas.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"4.25","priceCurrency":"EUR","description":"GR Fichajes solo: por empleado y mes, sin cuota de empresa (3,25 € desde la persona 91 y 2,25 € desde la 191). Impuestos aparte"},{"@type":"Offer","price":"1.25","priceCurrency":"EUR","description":"Con GR Gestor: por empleado y mes, impuestos aparte (1,25 € hasta el 50, 1,10 € del 51 al 200 y 0,95 € desde el 201)"},{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Incluido por la gestoría con GR Gestor Despacho + Jornada"}]}',
+        shot=SHOT_JORNADA),
+    dict(
         slug="citras", name="Citras", color="var(--c-citras)", kind="producto",
         kicker="Coordinación de flotas de vehículos",
         one="Cada vehículo, cada servicio y cada aviso en una sola pantalla: rutas que se rehacen solas, avisos urgentes y un enlace para seguir cada vehículo en el mapa.",
         url="https://mbtenerife.es/citras/", link="Conocer Citras",
         url2="https://mbtenerife.es/ambulancias/", link2="Probar la demo",
-        schema='{"@type":"SoftwareApplication","name":"Citras","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://mbtenerife.es/citras/","description":"Citras coordina flotas de vehículos: rutas que se hacen y se rehacen solas, avisos urgentes y un enlace para seguir cada vehículo en el mapa. Un producto de MBTenerife.","author":{"@type":"Organization","name":"MBTenerife","url":"https://mbtenerife.es","parentOrganization":{"@id":"' + ORG + '"}}}',
+        schema='{"@type":"SoftwareApplication","name":"Citras","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://mbtenerife.es/citras/","description":"Citras coordina flotas de vehículos: rutas que se hacen y se rehacen solas, avisos urgentes y un enlace para seguir cada vehículo en el mapa. Un producto de GebRey.","author":{"@id":"' + ORG + '"}}',
         # la demo de Citras usada de verdad (record-citras.js), no un recorrido por su web
         shot=video_shot("assets/video/citras-portatil", "assets/video/citras-movil",
                         "Vídeo de la demo de Citras en el portátil: el centro de coordinación recibe un aviso urgente, activa la ambulancia que antes llega, replanifica las rutas y repasa la flota",
@@ -214,8 +202,8 @@ PROJECTS = [
         shot=SHOT_WEB),
 ]
 
-# Los productos propios (sin la escena de la conexión), para las descripciones.
-PRODUCTOS = [p for p in PROJECTS if p["kind"] == "producto" and p["slug"] != "jornada"]
+# Los productos propios, para las descripciones.
+PRODUCTOS = [p for p in PROJECTS if p["kind"] == "producto"]
 
 def letters(text, cls="l"):
     """Cada carácter en un span (para animarlos uno a uno). Los espacios se marcan."""
@@ -341,7 +329,7 @@ def index_page(preview=False):
               + ']}')
     extra = f'<script type="application/ld+json">{schema}</script>'
     out = head("GEBREY — proyectos de software y web",
-               "AppEquipo, el portal del empleado; GR Gestor, la facturación con VERI*FACTU; Citras y ViaConextaHub. Y webs a medida, como la de Marnin.",
+               "GR Gestor, la facturación con VERI*FACTU; GR Gestor Plus; GR Fichajes, el registro de jornada; Citras y ViaConextaHub. Y webs a medida, como la de Marnin.",
                SITE + "/", "assets/css/site.css", extra, preview)
     out += header(home)
     out += f'''
@@ -582,7 +570,7 @@ def sitemap():
     return f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{body}</urlset>'
 
 def llms():
-    lines = ["# GEBREY", "", "> Software y webs a medida desde Tenerife: productos propios conectados entre sí (AppEquipo, GR Gestor, GR Gestor Plus, Citras y ViaConextaHub), apps para Android y webs y portales para clientes.", "",
+    lines = ["# GEBREY", "", "> Software y webs a medida desde Tenerife: productos propios conectados entre sí (GR Gestor, GR Gestor Plus, GR Fichajes, Citras y ViaConextaHub), apps para Android y webs y portales para clientes.", "",
              f"Contacto: {PERSON['email']} · {PERSON['phone']} · {PERSON['address'][0]}, {PERSON['address'][1]}"]
     for kind, titulo in (("producto", "Productos"), ("cliente", "Clientes"), ("servicio", "Servicios")):
         lines += ["", f"## {titulo}", ""]
