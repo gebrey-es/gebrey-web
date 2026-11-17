@@ -19,6 +19,13 @@ jobs:
             printf '%-34s %s → HTTP %s · %s\n' "$1" "$2" "$codigo" "${titulo:-sin título}"
             [ "$codigo" = 200 ] || { echo "::error::$1 no responde ($2)"; fallos=$((fallos + 1)); }
           }
+          enlaza() { # nombre, página, enlace que tiene que llevar
+            if curl -sS -L --max-time 30 "$2" 2>/dev/null | grep -qF "$3"; then
+              printf '%-34s %s → enlaza %s\n' "$1" "$2" "$3"
+            else
+              echo "::error::$1: $2 no enlaza $3"; fallos=$((fallos + 1))
+            fi
+          }
           interruptor() { # nombre, dirección de /api/demo
             respuesta=$(curl -sS --max-time 30 "$2" || true)
             printf '%-34s %s → %s\n' "$1" "$2" "$respuesta"
@@ -37,4 +44,7 @@ jobs:
           pagina "GR Gestor Plus" https://plus.grgestor.es/app/demo/administrador
           pagina "GR Fichajes" https://plus.grgestor.es/fichajes/demo/empleado
           interruptor "GR Gestor Plus (interruptor)" https://plus.grgestor.es/api/demo
+          # Las webs llevan a la demo de AppEquipo Fichajes (el registro de jornada con la gestoría).
+          enlaza "gebrey.es (Jornada)" https://gebrey.es/ https://fichajes.appequipo.es/demo/
+          enlaza "mbtenerife.es (con tu gestoría)" https://mbtenerife.es/registro-de-jornada/ https://fichajes.appequipo.es/demo/
           [ "$fallos" = 0 ] || exit 1
