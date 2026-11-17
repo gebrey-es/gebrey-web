@@ -21,3 +21,7 @@ Web de GEBREY: un escaparate de proyectos en una sola página (ViaConextaHub, Ap
 3. Commit y push a `main`: el workflow **Publicar gebrey.es** sube `site/` por FTPS a `public_html`.
 
 Los secretos del workflow (`FTP_HOST`, `FTP_USER`, `FTP_PASSWORD`) están en Settings → Secrets and variables → Actions.
+
+## Comprobar las demos
+
+El workflow **Comprobar las demos** abre desde fuera la demo sin cuenta de cada proyecto que enlaza la web (ViaConextaHub, AppEquipo, Citras, AppEquipo Fichajes, GR Gestor, GR Gestor Despacho, GR Gestor Plus y GR Fichajes) y dice si responde. Para las que tienen interruptor (GR Gestor y GR Gestor Plus), dice además si está abierta. No cambia nada.
