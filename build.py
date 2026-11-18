@@ -110,7 +110,7 @@ PROJECTS = [
     dict(
         slug="grgestor", name="GR Gestor", color="var(--c-grgestor)", kind="producto",
         kicker="Facturación con VERI*FACTU para autónomos y gestorías",
-        one="Facturas lacradas con VERI*FACTU que se escriben en una frase desde el móvil, lo que es de Hacienda apartado en su sobre y la gestoría viéndolo todo al momento, también las horas del equipo.",
+        one="Facturas lacradas con VERI*FACTU que se escriben en una frase desde el móvil, lo que es de Hacienda apartado en su sobre y la gestoría viéndolo todo al momento.",
         url="https://grgestor.es", link="Entrar en grgestor.es",
         url2="https://grgestor.es/app/demo/autonomo", link2="Probar la demo",
         schema='{"@type":"SoftwareApplication","name":"GR Gestor","applicationCategory":"FinanceApplication","operatingSystem":"Android, Web","url":"https://grgestor.es","description":"App de facturación con VERI*FACTU para autónomos y micropymes: facturas escritas en una frase, el IVA y el IRPF apartados en sobres y conexión con su gestoría, que trabaja con GR Gestor Despacho.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis hasta 3 facturas al mes"},{"@type":"Offer","price":"1.99","priceCurrency":"EUR","description":"Facturas ilimitadas, al mes, impuestos incluidos"},{"@type":"Offer","price":"20.30","priceCurrency":"EUR","description":"Facturas ilimitadas, al año, impuestos incluidos"}]}',
@@ -146,12 +146,13 @@ PROJECTS = [
                         "Vídeo de GR Gestor Plus en el móvil: la empresa repasa lo pendiente, sus cuentas, sus papeles y quién trabaja hoy")),
     dict(
         slug="grfichajes", name="GR Fichajes", color="var(--c-jornada)", kind="producto",
-        kicker="El registro de jornada de la familia GR Gestor",
-        # Precios: GR Fichajes solo, un euro por debajo de la competencia (FICHAJES_SOLO en App-Factura); con GR Gestor, su módulo de jornada.
-        one="El equipo ficha desde el móvil (también sin cobertura), cada fichaje queda sellado y la gestoría recibe las horas de cada mes, listas para las nóminas. Solo, 4,25 € por empleado y mes (3,25 € desde la 91 y 2,25 € desde la 191), sin cuota de empresa; con GR Gestor, desde 1,25 €; o incluido por la gestoría con GR Gestor Despacho + Jornada. Impuestos aparte.",
+        kicker="El registro de jornada de la familia GR Gestor, pronto en Google Play",
+        # Una app aparte de GR Gestor (desde el 18-11-2026 GR Gestor ya no lleva la jornada). Su precio, un euro por debajo de
+        # la competencia, es el de FICHAJES_SOLO en App-Factura.
+        one="El equipo ficha desde el móvil (también sin cobertura), cada fichaje queda sellado y la gestoría recibe las horas de cada mes, listas para las nóminas. 4,25 € por empleado y mes (3,25 € desde la 91 y 2,25 € desde la 191), sin cuota de empresa e impuestos aparte.",
         url="https://grgestor.es/fichajes.html", link="Ver precios",
         url2="https://fichajes.appequipo.es/demo/", link2="Probar la demo",
-        schema='{"@type":"SoftwareApplication","name":"GR Fichajes","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://fichajes.appequipo.es","description":"El registro de jornada de la familia GR Gestor: el equipo ficha desde el móvil, también sin cobertura, cada fichaje queda sellado y la gestoría recibe las horas de cada mes para las nóminas.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"4.25","priceCurrency":"EUR","description":"GR Fichajes solo: por empleado y mes, sin cuota de empresa (3,25 € desde la persona 91 y 2,25 € desde la 191). Impuestos aparte"},{"@type":"Offer","price":"1.25","priceCurrency":"EUR","description":"Con GR Gestor: por empleado y mes, impuestos aparte (1,25 € hasta el 50, 1,10 € del 51 al 200 y 0,95 € desde el 201)"},{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Incluido por la gestoría con GR Gestor Despacho + Jornada"}]}',
+        schema='{"@type":"SoftwareApplication","name":"GR Fichajes","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://fichajes.appequipo.es","description":"El registro de jornada de la familia GR Gestor: el equipo ficha desde el móvil, también sin cobertura, cada fichaje queda sellado y la gestoría recibe las horas de cada mes para las nóminas.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"4.25","priceCurrency":"EUR","description":"Por empleado y mes, sin cuota de empresa (3,25 € desde la persona 91 y 2,25 € desde la 191). Impuestos aparte"}]}',
         shot=SHOT_JORNADA),
     dict(
         slug="citras", name="Citras", color="var(--c-citras)", kind="producto",
