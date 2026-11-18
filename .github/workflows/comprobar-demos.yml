@@ -35,7 +35,7 @@ jobs:
           pagina "AppEquipo (por sectores)" https://mbtenerife.es/demostracion/
           pagina "AppEquipo (el portal)" https://mbtenerife.es/demo/
           pagina "Citras" https://mbtenerife.es/ambulancias/
-          pagina "GR Fichajes" https://fichajes.appequipo.es/demo/
+          pagina "GR Fichajes" https://plus.grgestor.es/fichajes/demo/encargado
           pagina "GR Fichajes (precios)" https://grgestor.es/fichajes.html
           pagina "GR Gestor" https://grgestor.es/app/demo/autonomo
           pagina "GR Gestor Despacho" https://grgestor.es/despacho/demo/gestoria
@@ -46,8 +46,8 @@ jobs:
           pagina "GR Gestor Plus (empleado)" https://plus.grgestor.es/app/demo/empleado
           interruptor "GR Gestor Plus (interruptor)" https://plus.grgestor.es/api/demo
           # Las webs llevan a la demo de GR Fichajes y a su página de precios.
-          enlaza "gebrey.es (GR Fichajes)" https://gebrey.es/ https://fichajes.appequipo.es/demo/
+          enlaza "gebrey.es (GR Fichajes)" https://gebrey.es/ https://plus.grgestor.es/fichajes/demo/encargado
           enlaza "gebrey.es (precios GR Fichajes)" https://gebrey.es/ https://grgestor.es/fichajes.html
-          enlaza "grgestor.es (GR Fichajes)" https://grgestor.es/fichajes.html https://fichajes.appequipo.es/demo/
+          enlaza "grgestor.es (GR Fichajes)" https://grgestor.es/fichajes.html https://plus.grgestor.es/fichajes/demo/encargado
           enlaza "mbtenerife.es (con tu gestoría)" https://mbtenerife.es/registro-de-jornada/ https://fichajes.appequipo.es/demo/
           [ "$fallos" = 0 ] || exit 1
