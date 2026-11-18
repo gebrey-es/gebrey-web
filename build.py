@@ -25,7 +25,7 @@ MOON = '<svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" 
 # El nombre solo aparece en el aviso legal (lo exige la LSSI); la portada es un escaparate de proyectos.
 PERSON = dict(
     name="Francisco Gebrié Vicente", email="hola@gebrey.es", phone="+34 822 276 190", phone_tel="+34822276190",
-    address=["Avda. Tres de Mayo 30, Edificio Adhlers, 1.ª planta", "38005 Santa Cruz de Tenerife"],
+    address=["Avda. Tres de Mayo 30, Edificio Ahlers, 1.ª planta", "38005 Santa Cruz de Tenerife"],
 )
 ORG = "https://gebrey.es/#org"
 INDEXNOW_KEY = "bf8285b213157c518309b0364a3946ae"
@@ -113,7 +113,7 @@ PROJECTS = [
         one="Facturas lacradas con VERI*FACTU que se escriben en una frase desde el móvil, lo que es de Hacienda apartado en su sobre y la gestoría viéndolo todo al momento.",
         url="https://grgestor.es", link="Entrar en grgestor.es",
         url2="https://grgestor.es/app/demo/autonomo", link2="Probar la demo",
-        schema='{"@type":"SoftwareApplication","name":"GR Gestor","applicationCategory":"FinanceApplication","operatingSystem":"Android, Web","url":"https://grgestor.es","description":"App de facturación con VERI*FACTU para autónomos y micropymes: facturas escritas en una frase, el IVA y el IRPF apartados en sobres y conexión con su gestoría, que trabaja con GR Gestor Despacho.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis hasta 3 facturas al mes"},{"@type":"Offer","price":"1.99","priceCurrency":"EUR","description":"Facturas ilimitadas, al mes, impuestos incluidos"},{"@type":"Offer","price":"20.30","priceCurrency":"EUR","description":"Facturas ilimitadas, al año, impuestos incluidos"}]}',
+        schema='{"@type":"SoftwareApplication","name":"GR Gestor","applicationCategory":"FinanceApplication","operatingSystem":"Android, Web","url":"https://grgestor.es","description":"App de facturación con VERI*FACTU para autónomos y micropymes: facturas escritas en una frase, el IVA y el IRPF apartados en sobres y conexión con su gestoría, que trabaja con GR Gestor Despacho.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis hasta 3 facturas al mes"},{"@type":"Offer","price":"5.99","priceCurrency":"EUR","description":"Facturas ilimitadas, al mes, impuestos incluidos"},{"@type":"Offer","price":"60.99","priceCurrency":"EUR","description":"Facturas ilimitadas, al año, impuestos incluidos"},{"@type":"Offer","price":"3.99","priceCurrency":"EUR","description":"GR Gestor Despacho, para gestorías: por cliente conectado y mes, impuestos incluidos (2,99 € del 51 al 200 y 1,99 € desde el 201)"}]}',
         shot=site_shot("grgestor", "GR Gestor")),
     dict(
         slug="grgestorplus", name="GR Gestor Plus", color="var(--c-grgestorplus)", kind="producto",
@@ -127,19 +127,19 @@ PROJECTS = [
             "escáner y herramientas PDF, cartas de la Administración explicadas con su plazo, fichajes (también sin cobertura), cuadrante, "
             "ausencias, nóminas que se firman y el registro para la Inspección. Lo que lee con IA (tickets, cartas, facturas dictadas) lo lee con la clave "
             "de IA de cada negocio o gestoría (por defecto, Google Gemini, gratis desde Google AI Studio). Android y web; pendiente de publicar en Google Play. "
-            "Precios con impuestos incluidos: gratis con anuncios (3 facturas al mes y hasta 3 personas); Cuentas 3,99 € al mes por negocio; "
-            "Papeles 2,99 € al mes por negocio; Equipo 1,69 € por persona y mes (1,49 € de la 51 a la 200 y 1,29 € desde la 201); "
-            "gestorías: 3,99 € por persona del despacho y, si incluyen a sus clientes, 4,99 € por cliente (3,99 € del 51 al 200 y 2,99 € desde el 201) "
+            "Precios con impuestos incluidos: gratis con anuncios (3 facturas al mes y hasta 3 personas); Cuentas 6,99 € al mes por negocio; "
+            "Papeles 6,99 € al mes por negocio; Equipo 1,39 € por persona y mes, el mismo para todas; "
+            "gestorías: 3,99 € por persona del despacho y, si incluyen a sus clientes, 3,99 € por cliente (2,99 € del 51 al 200 y 1,99 € desde el 201) "
             "y Equipo para sus empleados. Al año, un 15 % menos. Privacidad: https://grgestor.es/plus-privacidad.html. "
             "Demo sin cuenta: https://plus.grgestor.es/app/demo/administrador; como empleado: https://plus.grgestor.es/app/demo/empleado",
         schema='{"@type":"SoftwareApplication","name":"GR Gestor Plus","applicationCategory":"BusinessApplication","operatingSystem":"Android, Web",'
                '"description":"La app de la familia GR Gestor para negocios, sus empleados y su gestoría: presupuestos, facturas con QR tributario, gastos, el trimestre, escáner y PDF, cartas de la Administración explicadas, fichajes, cuadrante, ausencias y nóminas firmadas. Gratis con anuncios o por módulos.",'
                '"author":{"@id":"' + ORG + '"},"offers":['
                '{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis con anuncios: 3 facturas al mes y hasta 3 personas"},'
-               '{"@type":"Offer","price":"3.99","priceCurrency":"EUR","description":"Cuentas: presupuestos, facturas con QR tributario, gastos y trimestre; al mes por negocio, impuestos incluidos"},'
-               '{"@type":"Offer","price":"2.99","priceCurrency":"EUR","description":"Papeles: escáner, PDF, cartas explicadas y trámites; al mes por negocio, impuestos incluidos"},'
-               '{"@type":"Offer","price":"1.69","priceCurrency":"EUR","description":"Equipo: fichajes, cuadrante, ausencias y documentos firmados; por persona y mes, impuestos incluidos (1,49 € de la 51 a la 200 y 1,29 € desde la 201)"},'
-               '{"@type":"Offer","price":"3.99","priceCurrency":"EUR","description":"Gestorías: por persona del despacho y mes, impuestos incluidos; clientes incluidos desde 2,99 €"}]}',
+               '{"@type":"Offer","price":"6.99","priceCurrency":"EUR","description":"Cuentas: presupuestos, facturas con QR tributario, gastos y trimestre; al mes por negocio, impuestos incluidos"},'
+               '{"@type":"Offer","price":"6.99","priceCurrency":"EUR","description":"Papeles: escáner, PDF, cartas explicadas y trámites; al mes por negocio, impuestos incluidos"},'
+               '{"@type":"Offer","price":"1.39","priceCurrency":"EUR","description":"Equipo: fichajes, cuadrante, ausencias y documentos firmados; por persona y mes, impuestos incluidos, el mismo para todas"},'
+               '{"@type":"Offer","price":"3.99","priceCurrency":"EUR","description":"Gestorías: por persona del despacho y mes, impuestos incluidos; clientes incluidos desde 1,99 €"}]}',
         # la app de verdad, grabada en su demo (record-plus.js): la gestoría en el portátil y la empresa en el móvil
         shot=video_shot("assets/video/grgestorplus-portatil", "assets/video/grgestorplus-movil",
                         "Vídeo de GR Gestor Plus en el portátil: la gestoría repasa su cartera, entra en un cliente, mira su cuadrante y sus cuentas",
@@ -149,11 +149,12 @@ PROJECTS = [
         kicker="El registro de jornada de la familia GR Gestor, pronto en Google Play",
         # La app de control horario de la familia (es.grgestor.fichajes, de S-per-App), aparte de GR Gestor (que desde el
         # 18-11-2026 ya no lleva la jornada); su web y su demo están en plus.grgestor.es/fichajes. AppEquipo no es de la
-        # familia. Su precio, un euro por debajo de la competencia, es el de FICHAJES_SOLO en App-Factura.
-        one="El equipo ficha desde el móvil (también sin cobertura), cada fichaje queda sellado y la gestoría recibe las horas de cada mes, listas para las nóminas. 4,25 € por empleado y mes (3,25 € desde la 91 y 2,25 € desde la 191), sin cuota de empresa e impuestos aparte.",
+        # familia. Su precio (con los impuestos incluidos, por debajo de lo que cobra la competencia sin ellos) es el de
+        # FICHAJES_SOLO en App-Factura.
+        one="El equipo ficha desde el móvil (también sin cobertura), cada fichaje queda sellado y la gestoría recibe las horas de cada mes, listas para las nóminas. Gratis hasta 3 personas; sin anuncios, 1,39 € por persona y mes, impuestos incluidos y sin cuota de empresa.",
         url="https://grgestor.es/fichajes.html", link="Ver precios",
         url2="https://plus.grgestor.es/fichajes/demo/encargado", link2="Probar la demo",
-        schema='{"@type":"SoftwareApplication","name":"GR Fichajes","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://grgestor.es/fichajes.html","description":"El registro de jornada de la familia GR Gestor: el equipo ficha desde el móvil, también sin cobertura, cada fichaje queda sellado y la gestoría recibe las horas de cada mes para las nóminas.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"4.25","priceCurrency":"EUR","description":"Por empleado y mes, sin cuota de empresa (3,25 € desde la persona 91 y 2,25 € desde la 191). Impuestos aparte"}]}',
+        schema='{"@type":"SoftwareApplication","name":"GR Fichajes","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://grgestor.es/fichajes.html","description":"El registro de jornada de la familia GR Gestor: el equipo ficha desde el móvil, también sin cobertura, cada fichaje queda sellado y la gestoría recibe las horas de cada mes para las nóminas.","author":{"@id":"' + ORG + '"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Gratis hasta 3 personas, con anuncios"},{"@type":"Offer","price":"1.39","priceCurrency":"EUR","description":"Sin anuncios: por persona y mes, el mismo para todas, sin cuota de empresa. Impuestos incluidos"}]}',
         shot=SHOT_JORNADA),
     dict(
         slug="citras", name="Citras", color="var(--c-citras)", kind="producto",
